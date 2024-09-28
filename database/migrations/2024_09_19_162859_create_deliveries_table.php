@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('route_id')->constrained()->onDelete('cascade'); // Ruta asociada
-            // $table->foreignId('order_id')->constrained()->onDelete('cascade'); // Pedido asociado
             $table->string('status')->default('pending'); // Estado de la entrega
             $table->date('delivery_date')->nullable();// Fecha de entrega
           

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->string('charge'); // Carga del pedido
-            $table->string('origin'); // Origen del pedido
-            $table->string('destination'); // Destino del pedido
-            $table->date('date'); // Fecha del pedido
+            $table->foreignId('vehicle_id')->constrained()->onDelete('cascade'); // Relación con vehículos
+            $table->date('maintenance_date'); // Fecha del mantenimiento
+            $table->string('description'); // Descripción del mantenimiento 
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('maintenances');
     }
 };

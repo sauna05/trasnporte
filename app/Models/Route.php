@@ -10,5 +10,12 @@ class Route extends Model
     use HasFactory;
     protected $fillable = ['origin', 'destination', 'distance', 'status'];
 
-    
+   
+
+    //relacion de muchos a muchos con conductores y rutas
+
+    public function drivers()
+    {
+        return $this->belongsToMany(Driver::class, 'driver_route');  
+    }
 }

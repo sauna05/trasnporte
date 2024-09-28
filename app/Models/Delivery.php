@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Delivery extends Model
 {
     use HasFactory;
-    protected $fillable = ['route_id', 'status', 'delivery_date'];
+    protected $fillable = ['status', 'delivery_date'];
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'delivery_order');
+    }
+  
 }

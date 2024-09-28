@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +12,10 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->integer('capacity');
-            $table->string('status');
-            $table->date('maintenance_date');
-            $table->timestamps();
+            $table->string('type'); // Tipo de vehículo (e.g., camión, furgoneta)
+            $table->integer('capacity'); // Capacidad del vehículo
+            $table->string('status'); // Estado del vehículo (e.g., disponible, en mantenimiento)
+            $table->timestamps(); // Tiempos de creación y actualización
         }); 
     }
 
