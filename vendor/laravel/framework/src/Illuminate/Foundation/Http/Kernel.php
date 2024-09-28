@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Http;
 
+use App\Http\Middleware\RoleMiddleware;
 use Carbon\CarbonInterval;
 use DateTimeInterface;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -70,7 +71,10 @@ class Kernel implements KernelContract
      *
      * @deprecated
      */
-    protected $routeMiddleware = [];
+    protected $routeMiddleware = [
+        // Otros middlewares...
+       'role' => RoleMiddleware::class, // Registrar el middleware de roles
+    ];
 
     /**
      * The application's middleware aliases.
@@ -112,7 +116,9 @@ class Kernel implements KernelContract
         \Illuminate\Contracts\Session\Middleware\AuthenticatesSessions::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
+
     ];
+    
 
     /**
      * Create a new HTTP kernel instance.

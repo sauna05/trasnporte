@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionSeeder::class);
         $this->call(RouteSeeder::class);
         $this->call(class: VehicleSeeder::class);
+        $this->call(userSeeder::class);
+        $this->call(DriverSeeder::class);
+        $this->call(CustomerSeeder::class);
     }
 }

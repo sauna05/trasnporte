@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('imagen')->nullable();
             $table->string('license'); // Licencia del conductor
             $table->integer('experience'); // Años de experiencia
             $table->boolean('availability')->default(true); // Disponibilidad

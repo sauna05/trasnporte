@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('permission_id')->constrained('permissions')->onDelete('cascade')->
             onUpdate('cascade');
             $table->timestamps();
+            
         });
     }
 
