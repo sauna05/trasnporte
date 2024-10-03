@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('charge'); // Carga del pedido
-            $table->string('origin'); // Origen del pedido
-            $table->string('destination'); // Destino del pedido
+            // $table->string('origin'); // Origen del pedido
+            // $table->string('destination'); // Destino del pedido
             $table->date('date'); // Fecha del pedido
             $table->timestamps();
         });

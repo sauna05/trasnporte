@@ -83,7 +83,7 @@ class UserController extends Controller
                 return redirect()->route('conductor.dashboard');
             }
 
-            return redirect()->route('home');
+            return redirect()->route('home'); 
         }
 
         return redirect()->back()->withErrors([

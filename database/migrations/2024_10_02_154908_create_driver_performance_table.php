@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('maintenances', function (Blueprint $table) {
+        Schema::create('driver_performance', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vehicle_id')->constrained()->onDelete('cascade'); // Relación con vehículos
-            $table->date('maintenance_date'); // Fecha del mantenimiento
-            $table->boolean('is_maintenance');
-            $table->date('start');
-            $table->date('end');
+            $table->foreignId('id_drivers')->constrained('drivers')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('total deliveries');
+            $table->integer('on-time deliveries');
+            $table->integer('accidents')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('maintenances');
+        Schema::dropIfExists('driver_performance');
     }
 };

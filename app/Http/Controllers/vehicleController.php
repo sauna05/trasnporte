@@ -10,12 +10,12 @@ class vehicleController extends Controller
     public function index()
     {
         $vehicles = Vehicle::all();
-        return view('vehicles.index', compact('vehicles'));
+        return view('admin.vehicles_all', compact('vehicles'));
     }
 
     public function create()
     {
-        return view('vehicles.create');
+        return view('admin.create_vehicles');
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class vehicleController extends Controller
         }
 
         Vehicle::create($request->all());
-        return redirect()->route('vehicles.index')->with('success', 'Vehículo registrado con éxito');
+        return redirect()->route('admin.dashboard');
     }
 
     public function show($id)
@@ -61,6 +61,7 @@ class vehicleController extends Controller
         $vehicle = Vehicle::findOrFail($id);
         $vehicle->update($request->all());
         return redirect()->route('vehicles.index')->with('success', 'Vehículo actualizado con éxito');
+
     }
 
     public function destroy($id)

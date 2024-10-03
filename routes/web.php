@@ -12,15 +12,15 @@ Route::get('/', function () {
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-
-
 //Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 // // Rutas para el admin
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
-    // Route::get('/admin/vehicles', [vehicleController::class, 'index'])->name('admin.vehicles');
+    Route::get('/admin/create',[vehicleController::class,'create'])->name('create_vehicle_view');
+    Route::post('/admin/register', [vehicleController::class, 'store'])->name('register_vehicle');
+     Route::get('/admin/vehicles', [vehicleController::class, 'index'])->name('admin.vehicles');
     // Route::post('/admin/vehicles', [vehicleController::class, 'store'])->name('admin.vehicles.store');
     // Route::get('/admin/vehicles/create', [vehicleController::class, 'create'])->name('admin.vehicles.create');
     // Route::get('/admin/vehicles/{id}', [vehicleController::class, 'show'])->name('admin.vehicles.show');

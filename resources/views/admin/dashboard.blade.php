@@ -8,5 +8,13 @@
 </head>
 <body>
     <h2>welcome admin</h2>
+    <a href="{{route('create_vehicle_view')}}">Add vehicles</a>
+    <br>
+    <a href="{{route('admin.vehicles')}}">vehicles</a>
+    <br>
+    <a href="">add clientes</a>
+    <br>
+    <a href="">clientes</a>
+
 </body>
 </html>

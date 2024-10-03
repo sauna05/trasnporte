@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['charge', 'origin', 'destination', 'date'];
+    protected $fillable = ['charge',  'date'];
 
 
     public function deliveries()
