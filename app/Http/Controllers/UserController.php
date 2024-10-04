@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -7,18 +8,18 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    //vista admin
     public function index(Request $request)
     {
+        // Vista del panel de administración
         return view('admin.dashboard');
     }
-
 
     /**
      * Show the registration form.
@@ -28,48 +29,67 @@ class UserController extends Controller
         return view('auth.register');
     }
 
+    public function  loginForm(){
+        return view('login');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
-    public function register(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'role_id' => 'required|exists:roles,id', // Asegúrate de que el rol sea válido
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        // Asignar rol al usuario
-        $user->roles()->attach($request->role_id);
-
-        return redirect()->route('login')->with('success', 'Usuario registrado con éxito. Puedes iniciar sesión.');
-    }
+    // public function register(Request $request)
+    // {
+    //     // Validar los datos de entrada
+    //     $validator = Validator::make($request->all(), [
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:8|confirmed',
+    //         'document' => 'required|string|min:10|unique:users,document', 
+    //         'role_id' => 'required|exists:roles,id', 
+    //     ]);
+    
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
+    
+    //     // Usar una transacción para asegurar la integridad
+    //     DB::transaction(function () use ($request) {
+    //         // Crear un nuevo usuario
+    //         $user = User::create([
+    //             'name' => $request->name,
+    //             'email' => $request->email,
+    //             'password' => Hash::make($request->password),
+    //             'document' => $request->document, 
+    //         ]);
+    
+    //         // Asignar rol al usuario
+    //         $user->roles()->attach($request->role_id);
+    //     });
+    
+    //     return redirect()->route('login')->with('success', 'Usuario registrado con éxito. Puedes iniciar sesión.');
+    // }
 
     /**
      * Show the login form.
      */
     public function showLoginForm()
     {
+        // Mostrar el formulario de inicio de sesión
         return view('auth.login');
     }
 
+    /**
+     * Handle login request.
+     */
     public function login(Request $request)
     {
+        // Validar las credenciales de inicio de sesión
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
-        ]);
+            'password' => 'required|string|min:8',
+        ],[
+            'password'=>'La contraseña debe ser almenos de 8 caracteres.',
+        ]
+    );
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
@@ -91,10 +111,13 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Handle logout request.
+     */
     public function logout(Request $request)
     {
-        Auth::logout(); // Esto elimina la sesión
-        return redirect()->route('login')->with('success', 'Sesión cerrada con éxito.');
+        Auth::logout(); 
+        return redirect()->route('loginForm');
     }
 
     /**
@@ -136,12 +159,14 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['error' => 'Usuario no encontrado']);
         }
 
+        // Validar los datos para la actualización
         $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $id,
-            // Agrega otros campos que deseas actualizar
+            // Agrega otros campos que deseas actualizar si es necesario
         ]);
 
+        // Actualizar los datos del usuario
         $user->update($request->only(['name', 'email']));
 
         return redirect()->route('users.index')->with('success', 'Usuario actualizado con éxito');
@@ -153,15 +178,20 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::find($id);
+        
         if (!$user) {
             return redirect()->back()->withErrors(['error' => 'Usuario no encontrado']);
         }
         
+        // Eliminar el usuario
         $user->delete();
         
         return redirect()->route('users.index')->with('success', 'Usuario eliminado con éxito');
     }
 
+    /**
+     * Display all users.
+     */
     public function allUsers()
     {
         $users = User::all();

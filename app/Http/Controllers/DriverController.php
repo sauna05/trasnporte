@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Driver;
+use App\Models\Role;
+use App\Models\User;
 use App\Models\Route;
+use App\Models\Driver;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Validator;
 
 class DriverController extends Controller
 {
@@ -21,23 +24,22 @@ class DriverController extends Controller
         return view('conductor.dashboard');
     }
 
-    public function create()
-    {
-        $routes = Route::all(); // Obtener todas las rutas para la selección
-        return view('drivers.create', compact('routes')); // Pasar rutas a la vista
+    public function create_driverForm(){
+        $roles = Role::all();
+        return view('admin.driver_form',compact('roles'));
     }
-
-    public function registerDriver(Request $request)
+ 
+        public function registerDriver(Request $request)
     {
-        //validaciones
+        // Validaciones
         $validator = Validator::make($request->all(), [
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'license' => 'required|string|max:255',
             'experience' => 'required|integer|min:0',
-            'availability' => 'required|boolean',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'document' => 'required|string|min:10|unique:users,document', 
             'role_id' => 'required|exists:roles,id',
         ]);
 
@@ -45,42 +47,57 @@ class DriverController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Registrar el usuario utilizando el UserController
-        $userController = new UserController();
-        $userResponse = $userController->register($request);
+        // Crear un nuevo usuario
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'document' => $request->document, 
+        ]);
 
-        if ($userResponse->getStatusCode() !== 201) {
-            return redirect()->back()->withErrors(['error' => 'Error al crear el usuario.']);
-        }
-
-        // Obtener el usuario creado
-        $user = json_decode($userResponse->getContent());
-
-        if (!isset($user->user)) {
-            return redirect()->back()->withErrors(['error' => 'Error al crear el usuario.']);
-        }
+        // Asignar rol al usuario
+        $user->roles()->attach($request->role_id);
 
         // Crear el conductor asociado al usuario
         $driver = new Driver();
-        $driver->imagen = $request->imagen;
+        $driver->user_id = $user->id; // Asegúrate de tener esta relación definida
         $driver->license = $request->license;
-        $driver->experience = $request->experience; // Corrige typo aquí
-        $driver->availability = $request->availability;
+        $driver->experience = $request->experience;
+        
 
         if ($request->hasFile('imagen')) {
+            
             $imagePath = $request->file('imagen')->store('images', 'public');
             $driver->imagen = $imagePath;
         }
 
         $driver->save();
 
-        // Asignar rutas al conductor, si se seleccionan
-        if ($request->has('routes')) {
-            $driver->routes()->attach($request->routes); // Guardar relación en tabla pivote
-        }
-
         return redirect()->route('drivers.index')->with('success', 'Conductor registrado con éxito');
     }
+
+    public function assignRoutesToDriver(Request $request, $driverId)
+   {
+    // Validaciones
+    $validator = Validator::make($request->all(), [
+        'routes' => 'required|array', // Asegúrate de que routes sea un array
+        'routes.*' => 'exists:routes,id', // Validar cada ruta existente
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    // Obtener el conductor por ID
+    $driver = Driver::findOrFail($driverId);
+
+    // Asignar rutas al conductor
+    if ($request->has('routes')) {
+        $driver->routes()->attach($request->routes); // Guardar relación en tabla pivote
+    }
+
+      return redirect()->route('drivers.index')->with('success', 'Rutas asignadas con éxito al conductor.');
+  }
 
     public function show($id)
     {

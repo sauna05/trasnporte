@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Inicio</title>
+    @vite('resources/css/app.css')
 </head>
 <body>
-    <h2>welcome admin</h2>
-    <a href="{{route('create_vehicle_view')}}">Add vehicles</a>
-    <br>
-    <a href="{{route('admin.vehicles')}}">vehicles</a>
-    <br>
-    <a href="">add clientes</a>
-    <br>
-    <a href="">clientes</a>
+
+
+    <header class="bg-[#003366] text-white p-4 flex justify-between items-center">
+        <nav class="flex space-x-4">
+            <a href="{{ route('admin.vehicles') }}" class="hover:underline">Vehicles</a>
+            <a href="{{route('admin.clienteForm')}}" class="hover:underline">Clientes</a>
+            <a href="{{route('admin.createForm')}}" class="hover:underline"> conductores </a>
+        </nav>
+    
+        <form action="{{route('admin.logout')}}" method="POST">
+            @csrf
+            <button type="submit" class="bg-[#FF6600] text-white rounded px-4 py-2 hover:bg-orange-600 transition duration-300">Cerrar sesión</button>
+        </form>
+    </header>
+
+ 
+    <main class="text-center p-6">
+        <h2 class="text-2xl">Hola Admin</h2>
+    </main>
 
 </body>
 </html>

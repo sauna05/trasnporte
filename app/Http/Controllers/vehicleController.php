@@ -23,7 +23,7 @@ class vehicleController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => 'required|string|max:255',
             'capacity' => 'required|integer|min:1',
-            'status' => 'required|string|max:255',
+           
         ]);
 
         if ($validator->fails()) {

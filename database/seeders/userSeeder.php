@@ -22,7 +22,9 @@ class userSeeder extends Seeder
         $user = User::create([
             'name' => "admin",
             'email' => "sauna05@gmail.com",
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'document'=>'1122391241',
+           
         ]);
 
         // Asociar usuario y rol
