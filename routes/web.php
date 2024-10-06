@@ -13,9 +13,9 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/login', [UserController::class, 'loginForm'])->name('loginForm');
 // //Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::post('/login', [UserController::class, 'login'])->name('login');
 
 
 // // Rutas para el admin

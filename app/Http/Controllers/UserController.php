@@ -59,7 +59,8 @@ class UserController extends Controller
                 return redirect()->route('conductor.dashboard');
             }
 
-            return redirect()->route('home'); 
+            // return redirect()->route('home'); 
+
         }
 
         // Si las credenciales no son correctas, redirigir de nuevo con errores

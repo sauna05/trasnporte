@@ -31,7 +31,7 @@
 
     <script>
         function confirmarEliminacion(){
-            return confirm('Esta seguro que deseha serrar session');
+            return confirm('¿Esta seguro que desea serrar session');
         }
     </script>
 
