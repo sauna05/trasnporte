@@ -26,7 +26,7 @@
 
         <nav class="flex text-center h-11 bg-azul-principal-0 justify-between items-center">
             <a href="{{ route('admin.routesForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Rutas</a>
-            <a href="{{ route('admin.createForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Conductores</a>
+            <a href="{{route('admin.drivers')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Conductores</a>
             <a href="{{ route('admin.vehicles') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Vehiculos</a>
             <a href="{{ route('admin.clienteForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Clientes</a>
             <a href="{{ route('admin.vehicles') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Reportes</a>

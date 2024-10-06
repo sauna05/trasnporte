@@ -16,7 +16,7 @@ class DriverController extends Controller
     public function index()
     {
         $drivers = Driver::with('user')->get(); // Cargar la relación con el usuario
-        return view('drivers.index', ['drivers' => $drivers]);
+        return view('admin.drivers-index', compact('drivers'));
     }
 
     public function indexDriver()
@@ -24,9 +24,9 @@ class DriverController extends Controller
         return view('conductor.dashboard');
     }
 
-    public function create_driverForm(){
-        $roles = Role::all();
-        return view('admin.driver_form',compact('roles'));
+    public function create(){
+
+        return view('admin.driver_form');
     }
  
         public function registerDriver(Request $request)
@@ -73,7 +73,7 @@ class DriverController extends Controller
 
         $driver->save();
 
-        return redirect()->route('admin.dashboard')->with('success', 'Conductor registrado con éxito');
+        return redirect()->route('admin.drivers')->with('success', 'Conductor registrado con éxito');
     }
 
     public function assignRoutesToDriver(Request $request, $driverId)

@@ -15,9 +15,14 @@ class CustomerController extends Controller
      * Register a new customer.
      */
 
+     public function index(){
+        return view('cliente.dashboard');
+     }
+
      
     public function indexCustomer(){
-        return view('cliente.dashboard');
+        $customer = Customer::with('users')->get();
+        return view('cliente.dashboard',compact('customers'));
     }
 
     public function createForm(){
@@ -68,14 +73,14 @@ class CustomerController extends Controller
 
 
     
-        return redirect()->route('admin.dashboard')->with('success', 'Cliente registrado con éxito.');
+        return redirect()->route('admin.vehicles')->with('success', 'Cliente registrado con éxito.');
     }
     /**
      * Display a listing of the customers.
-     */
-    public function index()
-    {
-        $customers = Customer::all();
-        return view('customers.index', ['customers' => $customers]);
-    }
+    */
+    // public function index()
+    // {
+    //     $customers = Customer::all();
+    //     return view('customers.index', ['customers' => $customers]);
+    // }
 }

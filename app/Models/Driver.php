@@ -17,6 +17,11 @@ class Driver extends Model
         return $this->belongsToMany(Route::class, 'driver_route');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     
     
 }

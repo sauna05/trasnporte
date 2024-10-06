@@ -31,7 +31,7 @@ class vehicleController extends Controller
         }
 
         Vehicle::create($request->all());
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.vehicles');
     }
 
     public function show($id)

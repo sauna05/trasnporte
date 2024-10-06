@@ -5,12 +5,12 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RouteController;
-use App\Models\Driver;
+
 use Illuminate\Support\Facades\Route;
 
 // Ruta principal que gestione el login 
 Route::get('/', function () {
-    return view('admin.vehicles-show');
+    return view('admin.routes-show');
 });
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('loginForm');
@@ -37,13 +37,18 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/cliente', [CustomerController::class, 'createForm'])->name('admin.clienteForm');
     Route::post('/admin/cliente', [CustomerController::class, 'registerCustomer'])->name('admin.registerCliente');
 
-    Route::get('/admin/driver', [DriverController::class, 'create_driverForm'])->name('admin.createForm');
-    Route::post('/admin/driver', [DriverController::class, 'registerDriver'])->name('admin.registerDriver');
     Route::post('/admin/logout', action: [UserController::class, 'logout'])->name('admin.logout');
 
     //rutas
 
     Route::get('/admin/routes',[RouteController::class,'routes_index'])->name('admin.routesForm');
+    Route::get('/admin/routesDocument',[RouteController::class,'buscadorDocument'])->name('admin.showDocument');
+
+
+    //rutas de conductores
+    Route::get('/admin/driver', [DriverController::class, 'index'])->name('admin.drivers');
+    Route::get('/admin/driverView', [DriverController::class, 'create'])->name('admin.driverForm');
+    Route::post('/admin/driverRegister', [DriverController::class, 'registerDriver'])->name('admin.registerDriver');
 
 });
 
@@ -57,7 +62,7 @@ Route::middleware(['role:conductor'])->group(function () {
 
 // Rutas para clientes
 Route::middleware(['role:cliente'])->group(function () {
-    Route::get('/cliente/dashboard', [CustomerController::class, 'indexCustomer'])->name('cliente.dashboard');
+    Route::get('/cliente/dashboard', [CustomerController::class, 'index'])->name('cliente.dashboard');
     Route::get('/cliente/createOrder', [OrderController::class, 'create'])->name('cliente.orders-create');
     Route::post('/cliente/registerorder', [OrderController::class, 'store'])->name('cliente.registerOrder');
 });

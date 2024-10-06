@@ -29,7 +29,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.registerDriver') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.registerDriver') }}" method="POST"   enctype="multipart/form-data">
             @csrf <!-- Asegúrate de incluir este token CSRF para la seguridad -->
             
             <div class="mb-4">
@@ -69,7 +69,7 @@
 
             <div class="mb-4">
                 <label for="imagen" class="block text-sm font-medium text-gray-700">Imagen</label>
-                <input type="file" name="imagen" id="imagen" accept=".jpeg,.png,.jpg,gif" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
+                <input type="file" name="imagen" id="imagen" accept=".jpeg,.png,.jpg,gif" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300"  accept="image/*">
             </div>
 
             {{-- <div class="mb-4">
