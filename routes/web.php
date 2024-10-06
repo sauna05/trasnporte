@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // Ruta principal que gestione el login 
 Route::get('/', function () {
-    return view('login');
+    return view('admin.routes-index');
 });
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
