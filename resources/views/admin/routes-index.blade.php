@@ -42,58 +42,60 @@ title="Rutas">
         {{-- cada article es un registro --}}
         <a class="w-2/3 space-y-3 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 block" href="#">
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Cliente:</h4>
+                <h4 class="w-16 text-right pr-4 font-bold">Cliente:</h4>
                 <p class="parrafo">Nombre Cliente</p>
             </div>
 
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Estado:</h4>
+                <h4 class="w-16 text-right pr-4 font-bold">Estado:</h4>
                 <p class="parrafo">Pendiente</p>
             </div>
 
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Carga:</h4>
-                <p class="parrafo">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem ratione dolorum quas distinctio. Inventore error ea neque officia eaque voluptatem?</p>
+                <h4 class="w-16 text-right pr-4 font-bold">Carga:</h4>
+                <p class="parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad distinctio doloribus quasi ducimus nam exercitationem voluptatem perferendis adipisci, architecto minus magnam obcaecati, libero quisquam accusamus tenetur. Rerum labore autem architecto sint numquam nisi totam debitis, praesentium possimus provident necessitatibus explicabo.</p>
             </div>
         </a>
 
 
         {{-- Los de abajo están puestos de prueba --}}
 
+
         <a class="w-2/3 space-y-3 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 block" href="#">
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Cliente:</h4>
+                <h4 class="w-16 text-right pr-4 font-bold">Cliente:</h4>
                 <p class="parrafo">Nombre Cliente</p>
             </div>
 
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Estado:</h4>
+                <h4 class="w-16 text-right pr-4 font-bold">Estado:</h4>
                 <p class="parrafo">Pendiente</p>
             </div>
 
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Carga:</h4>
-                <p class="parrafo">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem ratione dolorum quas distinctio. Inventore error ea neque officia eaque voluptatem?</p>
+                <h4 class="w-16 text-right pr-4 font-bold">Carga:</h4>
+                <p class="parrafo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae quo unde distinctio est ducimus, libero quibusdam illo repellat molestiae dignissimos!</p>
             </div>
         </a>
 
 
         <a class="w-2/3 space-y-3 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 block" href="#">
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Cliente:</h4>
+                <h4 class="w-16 text-right pr-4 font-bold">Cliente:</h4>
                 <p class="parrafo">Nombre Cliente</p>
             </div>
 
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Estado:</h4>
+                <h4 class="w-16 text-right pr-4 font-bold">Estado:</h4>
                 <p class="parrafo">Pendiente</p>
             </div>
 
             <div class="flex">
-                <h4 class="w-16 text-right pr-4 font-semibold">Carga:</h4>
-                <p class="parrafo">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem ratione dolorum quas distinctio. Inventore error ea neque officia eaque voluptatem?</p>
+                <h4 class="w-16 text-right pr-4 font-bold">Carga:</h4>
+                <p class="parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad distinctio doloribus quasi ducimus nam exercitationem voluptatem perferendis adipisci, architecto minus magnam obcaecati, libero quisquam accusamus tenetur. Rerum labore autem architecto sint numquam nisi totam debitis, praesentium possimus provident necessitatibus explicabo.</p>
             </div>
         </a>
+        
 
 
     </section>

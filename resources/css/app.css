@@ -7,5 +7,5 @@
 }
 
 .parrafo{
-    @apply text-lg font-medium
+    @apply text-base font-medium
 }
