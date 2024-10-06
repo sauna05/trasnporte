@@ -26,7 +26,11 @@ export default {
         "fondo": ["#F5F5F5"],
         "azul-principal": ["#003366"],
         "naranja": ["#FF6600"]
-      }
+      },
+      
+      fontFamily: {
+        sans: ['Nunito Sans', 'sans-serif'],  // Agrega tu fuente aquí
+      },
     },
   },
   plugins: [],
