@@ -20,23 +20,31 @@
             <form action="{{route('admin.logout')}}" method="POST" onclick="return confirmarEliminacion();" >
                 @csrf
                 <button type="submit" class="btn">Cerrar sesión</button>
+                
             </form>
         </div>
 
         <nav class="flex text-center h-11 bg-azul-principal-0 justify-between items-center">
-            <a href="{{ route('admin.vehicles') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Rutas</a>
-            <a href="{{ route('admin.vehicles') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Conductores</a>
+            <a href="{{ route('admin.routesForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Rutas</a>
+            <a href="{{ route('admin.createForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Conductores</a>
             <a href="{{ route('admin.vehicles') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Vehiculos</a>
-            <a href="{{ route('admin.vehicles') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Clientes</a>
+            <a href="{{ route('admin.clienteForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Clientes</a>
             <a href="{{ route('admin.vehicles') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Reportes</a>
         </nav>
+        {{-- <button class="flex items-center text-gray-700 focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <img class="w-10 h-10 rounded-full border-2 border-indigo-600" src="{{ asset('storage/' . auth()->user()->imagen) }}" alt="Profile Picture">
+            <span class="ml-2 text-lg font-medium">{{ auth()->user()->name}}</span>
+            <svg class="w-5 h-5 ml-2 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button> --}}
     </header>
 
-    {{--  Contenido principal --}}
-    <main class="flex-grow  p-6">
+    {{-- Contenido principal --}}
+    <main class="flex-grow p-6 text-center">
         {{$slot}}
+       
     </main>
-
 
     <footer class="h-11 bg-azul-principal-0 text-center p-2">
         <p class="text-fondo-0 font-medium">@TransportFast</p> 

@@ -1,93 +1,42 @@
-<x-layout-admin
-title="Vehiculos">
-
+<x-layout-admin title="Vehiculos">
     <section class="space-y-8 my-5 relative">
-        
-                    
-
         <div class="fixed right-36 top-40 font-bold text-2xl flex flex-col justify-center items-center space-y-5">
             <h2 class="mb-14">Vehiculos</h2>
-            <img src="{{asset('images\icons\anadir-camion.png')}}" alt="">
-            <a href="#" class=" btn flex justify-center items-center ">Añadir Vehiculo</a>
+            <img src="{{ asset('images/icons/anadir-camion.png') }}" alt="">
+            <a href="{{ route('admin.create-vehicles') }}" class="btn flex justify-center items-center">Añadir Vehiculo</a>
         </div>
 
-        {{-- primer camion --}}
+        {{-- Listado de Vehículos --}}
+        @if ($vehicles->isEmpty())
+            <div class="text-center text-lg font-semibold text-gray-700">
+                No hay vehículos registrados.
+            </div>
+        @else
+            @foreach ($vehicles as $vehicle)
+                <a class="flex w-2/4 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 space-x-5" href="#">
+                    <div class="flex justify-center items-center">
+                        <img src="{{ asset('images/camion-por-defecto.png') }}" class="w-48" alt="">
+                    </div>
 
-        <a class="flex  w-2/4  border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 space-x-5 " href="#">
-          
-            <div class="flex justify-center items-center">
-                <img src="{{asset('images\camion-por-defecto.png')}}" class="w-48" alt="">
-           </div>
+                    <article class="space-y-5 self-center">
+                        <div class="flex space-x-5">
+                            <h4 class="w-20 text-right font-bold">Tipo:</h4>
+                            <p class="parrafo">{{ $vehicle->type }}</p>
+                        </div>
 
-           <article class="space-y-5 self-center">
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Tipo:</h4>
-                    <p class="parrafo">Tipo de camion</p>
-                </div>
+                        <div class="flex space-x-5">
+                            <h4 class="w-20 text-right font-bold">Capacidad:</h4>
+                            <p class="parrafo">{{ $vehicle->capacity }} kg</p>
+                        </div>
 
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Capacidad:</h4>
-                    <p class="parrafo">12000 k</p>
-                </div>
-
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Estado:</h4>
-                    <p class="parrafo">Disponible</p>
-                </div>  
-            </article>
-        </a>
-
-        {{-- Camiones de prueba --}}
-
-        <a class="flex  w-2/4  border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 space-x-5 " href="#">
-          
-            <div class="flex justify-center items-center">
-                <img src="{{asset('images\trucks\camion1.png')}}" class="w-48" alt="">
-           </div>
-
-           <article class="space-y-5 self-center">
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Tipo:</h4>
-                    <p class="parrafo">Camion Contenedor</p>
-                </div>
-
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Capacidad:</h4>
-                    <p class="parrafo">25000 k</p>
-                </div>
-
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Estado:</h4>
-                    <p class="parrafo">Mantenimiento</p>
-                </div>  
-            </article>
-        </a>
-
-        <a class="flex  w-2/4  border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 space-x-5 " href="#">
-          
-            <div class="flex justify-center items-center">
-                <img src="{{asset('images\trucks\camion2.png')}}" class="w-48" alt="">
-           </div>
-
-           <article class="space-y-5 self-center">
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Tipo:</h4>
-                    <p class="parrafo">Camion con Carpa</p>
-                </div>
-
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Capacidad:</h4>
-                    <p class="parrafo">32300 k</p>
-                </div>
-
-                <div class="flex space-x-5">
-                    <h4 class="w-20 text-right  font-bold">Estado:</h4>
-                    <p class="parrafo">Ocupado</p>
-                </div>  
-            </article>
-        </a>
-
+                        <div class="flex space-x-5">
+                            <h4 class="w-20 text-right font-bold">Estado:</h4>
+                            <p class="parrafo">{{ $vehicle->status }}</p>
+                        </div>  
+                    </article>
+                </a>
+            @endforeach
+        @endif
 
     </section>
-
-</x-layout-adminz>
+</x-layout-admin>

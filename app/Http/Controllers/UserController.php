@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-        // Vista del panel de administración
-        return view('admin.dashboard');
-    }
-
+   
     /**
      * Show the registration form.
      */
@@ -33,8 +29,7 @@ class UserController extends Controller
         return view('login');
     }
 
-   
-  
+
 
         public function login(Request $request)
     {
@@ -52,7 +47,7 @@ class UserController extends Controller
 
             // Redirigir según el rol del usuario
             if ($user->roles()->where('name', 'admin')->exists()) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.vehicles');
             } elseif ($user->roles()->where('name', 'cliente')->exists()) {
                 return redirect()->route('cliente.dashboard');
             } elseif ($user->roles()->where('name', 'conductor')->exists()) {

@@ -20,8 +20,9 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 
 // // Rutas para el admin
 Route::middleware(['role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/create', [VehicleController::class, 'create'])->name('create_vehicle_view');
+
+   // Route::get('/admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/create', [VehicleController::class, 'create'])->name('admin.create-vehicles');
     Route::post('/admin/register', [VehicleController::class, 'store'])->name('register_vehicle');
     Route::get('/admin/vehicles', [VehicleController::class, 'index'])->name('admin.vehicles');
 

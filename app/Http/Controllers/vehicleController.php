@@ -9,8 +9,8 @@ class vehicleController extends Controller
 {
     public function index()
     {
-        $vehicles = Vehicle::all();
-        return view('admin.vehicles_all', compact('vehicles'));
+        $vehicles = Vehicle::all(); // Obtener todos los vehículos
+        return view('admin.vehicles-index', compact('vehicles')); // Pasar datos a la vista
     }
 
     public function create()
