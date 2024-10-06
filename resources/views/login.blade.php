@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-fondo-0 min-h-full">
-    <img src="{{ asset('images/icons/logo.svg') }}" alt="" class="mx-auto mt-10 mb-5">
+    <img src="{{ asset('images/icons/logo.svg') }}" alt="" class="mx-auto my-5">
 
     <form action="{{ route('login') }}" method="POST" class="bg-azul-principal-0 w-96 h-[26rem] flex flex-col mx-auto rounded-lg space-y-5 justify-center text-fondo-0 items-start px-10">
         @csrf

@@ -1,3 +1,11 @@
 @tailwind base; 
 @tailwind components;
 @tailwind utilities;
+
+.btn{
+    @apply w-36 bg-naranja-0 h-12 parrafo text-fondo-0 font-semibold rounded-md hover:bg-[#FF9147] transition-all 
+}
+
+.parrafo{
+    @apply text-base font-medium
+}
