@@ -57,14 +57,14 @@
                 <input type="password" name="password_confirmation" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300" placeholder="Confirme su contraseña">
             </div>
 
-            <div class="mb-4">
+            {{-- <div class="mb-4">
                 <label for="role_id" class="block text-sm font-medium text-gray-700">Rol</label>
                 <select name="role_id" id="" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
                     @foreach($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
             <div class="mb-4">
                 <label for="phone_number" class="block text-sm font-medium text-gray-700">Teléfono</label>

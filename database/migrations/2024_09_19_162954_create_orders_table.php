@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('charge'); // Carga del pedido
-            // $table->string('origin'); // Origen del pedido
-            // $table->string('destination'); // Destino del pedido
-            $table->date('date'); // Fecha del pedido
+             // El cliente hace el pedido
+             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade')->onUpdate('cascade');
+             $table->string('charge'); // Carga del pedido
+             $table->foreignId('route_id')->constrained('routes')->onDelete('cascade')->onUpdate('cascade'); // Referencia a la ruta
+             $table->date('date'); // Fecha del pedido
             $table->timestamps();
         });
     }

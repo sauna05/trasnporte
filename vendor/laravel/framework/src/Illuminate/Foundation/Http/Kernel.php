@@ -55,15 +55,22 @@ class Kernel implements KernelContract
      *
      * @var array<int, class-string|string>
      */
-    protected $middleware = [];
+    protected $middleware = [
+
+    ];
 
     /**
      * The application's route middleware groups.
      *
      * @var array<string, array<int, class-string|string>>
      */
-    protected $middlewareGroups = [];
-
+    protected $middlewareGroups = [
+        'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            'throttle:api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+    ];
     /**
      * The application's route middleware.
      *
@@ -73,6 +80,7 @@ class Kernel implements KernelContract
      */
     protected $routeMiddleware = [
         // Otros middlewares...
+        
        'role' => RoleMiddleware::class, // Registrar el middleware de roles
     ];
 

@@ -34,12 +34,13 @@ class CustomerController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'document' => 'required|string|min:10|unique:users,document', 
-            'role_id' => 'required|exists:roles,id', 
+            //'role_id' => 'required|exists:roles,id', 
         ]);
     
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
     
         // Crear un nuevo usuario
         $user = User::create([
@@ -47,19 +48,27 @@ class CustomerController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'document' => $request->document, 
+           
+            
         ]);
        
     
+        //$user->roles()->attach($request->role_id);
+
         // Asignar rol al usuario
-        $user->roles()->attach($request->role_id);
-    
+         $user->roles()->attach(2);
+   
+
+
         // Crear el cliente asociado al usuario
         Customer::create([
-            "user_id" => $user->id,  // Aquí obtenemos el ID del usuario recién creado
+            "user_id" => $user->id,  // Aquí obtenemos el el id del usuario recien creadi
             'phone_number' => $request->phone_number,
         ]);
+
+
     
-        return redirect()->route('customers.index')->with('success', 'Cliente registrado con éxito.');
+        return redirect()->route('admin.dashboard')->with('success', 'Cliente registrado con éxito.');
     }
     /**
      * Display a listing of the customers.

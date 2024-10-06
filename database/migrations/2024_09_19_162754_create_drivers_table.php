@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('imagen')->nullable();
             $table->string('license'); // Licencia del conductor 
             $table->integer('experience'); // Años de experiencia
-            $table->string('availability')->default('disponible'); // Disponibilidad
+            $table->string('availability')->default('disponible'); // Disponibilidad default
             $table->timestamps();
         });
     }

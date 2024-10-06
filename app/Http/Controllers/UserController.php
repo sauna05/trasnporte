@@ -33,64 +33,20 @@ class UserController extends Controller
         return view('login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function register(Request $request)
-    // {
-    //     // Validar los datos de entrada
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|string|email|max:255|unique:users',
-    //         'password' => 'required|string|min:8|confirmed',
-    //         'document' => 'required|string|min:10|unique:users,document', 
-    //         'role_id' => 'required|exists:roles,id', 
-    //     ]);
-    
-    //     if ($validator->fails()) {
-    //         return redirect()->back()->withErrors($validator)->withInput();
-    //     }
-    
-    //     // Usar una transacción para asegurar la integridad
-    //     DB::transaction(function () use ($request) {
-    //         // Crear un nuevo usuario
-    //         $user = User::create([
-    //             'name' => $request->name,
-    //             'email' => $request->email,
-    //             'password' => Hash::make($request->password),
-    //             'document' => $request->document, 
-    //         ]);
-    
-    //         // Asignar rol al usuario
-    //         $user->roles()->attach($request->role_id);
-    //     });
-    
-    //     return redirect()->route('login')->with('success', 'Usuario registrado con éxito. Puedes iniciar sesión.');
-    // }
+   
+  
 
-    /**
-     * Show the login form.
-     */
-    public function showLoginForm()
-    {
-        // Mostrar el formulario de inicio de sesión
-        return view('auth.login');
-    }
-
-    /**
-     * Handle login request.
-     */
-    public function login(Request $request)
+        public function login(Request $request)
     {
         // Validar las credenciales de inicio de sesión
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:8',
-        ],[
-            'password'=>'La contraseña debe ser almenos de 8 caracteres.',
-        ]
-    );
+        ], [
+            'password' => 'La contraseña debe ser al menos de 8 caracteres.',
+        ]);
 
+        // Intentar autenticar al usuario
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
 
@@ -106,18 +62,23 @@ class UserController extends Controller
             return redirect()->route('home'); 
         }
 
+        // Si las credenciales no son correctas, redirigir de nuevo con errores
         return redirect()->back()->withErrors([
             'email' => 'Las credenciales no coinciden con nuestros registros.',
         ]);
     }
+
+
 
     /**
      * Handle logout request.
      */
     public function logout(Request $request)
     {
-        Auth::logout(); 
-        return redirect()->route('loginForm');
+        Auth::logout();
+    
+        // Redirigir a la ruta de inicio de sesión con un mensaje
+        return redirect()->route('loginForm')->with('message', 'Has cerrado sesión correctamente.');
     }
 
     /**

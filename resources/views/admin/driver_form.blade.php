@@ -72,16 +72,16 @@
                 <input type="file" name="imagen" id="imagen" accept=".jpeg,.png,.jpg,gif" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
             </div>
 
-            <div class="">
+            {{-- <div class="mb-4">
                 <label for="role_id">Rol</label>
                 <select name ="role_id" id="" required class="mt - 1 block w - full p - 2 border border - gray - 300 rounded - md focus : ring focus : ring - blue - 300 ">
                     @foreach($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
-            <button type ="submit "class="w - full bg - blue - 600 hover:bg - blue - 700 text - white font - bold py - 2 rounded - md transition duration - 200 ">Registrar</button>
+            <button type ="submit "class="w-full bg-blue-600 hover:bg-blue - 700 text-white font-bold py-2 rounded-md transition duration-200 ">Registrar</button>
         </form>  
     </div>
 

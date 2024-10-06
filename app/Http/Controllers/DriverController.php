@@ -40,7 +40,7 @@ class DriverController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'document' => 'required|string|min:10|unique:users,document', 
-            'role_id' => 'required|exists:roles,id',
+            //'role_id' => 'required|exists:roles,id',
         ]);
 
         if ($validator->fails()) {
@@ -56,7 +56,7 @@ class DriverController extends Controller
         ]);
 
         // Asignar rol al usuario
-        $user->roles()->attach($request->role_id);
+        $user->roles()->attach(3);
 
         // Crear el conductor asociado al usuario
         $driver = new Driver();
@@ -73,7 +73,7 @@ class DriverController extends Controller
 
         $driver->save();
 
-        return redirect()->route('drivers.index')->with('success', 'Conductor registrado con éxito');
+        return redirect()->route('admin.dashboard')->with('success', 'Conductor registrado con éxito');
     }
 
     public function assignRoutesToDriver(Request $request, $driverId)
