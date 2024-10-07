@@ -27,7 +27,7 @@ class CustomerController extends Controller
 
     public function createForm(){
         
-        return view('admin.cliente_form');
+        return view('admin.customer-create');
     }
      
     public function registerCustomer(Request $request)

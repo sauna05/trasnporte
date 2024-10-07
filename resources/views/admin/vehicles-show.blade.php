@@ -1,7 +1,6 @@
 <x-layout-admin
 title="Vehiculo">
 
-<h1 class="text-2xl font-bold mb-5">Nombre Vehiculo</h1>
 
    {{-- cada article es un registro --}}
    <section class="flex space-x-20 ">
@@ -10,6 +9,9 @@ title="Vehiculo">
 
        
         <article class="space-y-5 ">
+
+            <h1 class="text-2xl font-bold mb-5">Nombre Vehiculo</h1>
+
 
             <div class="flex space-x-5">
                 <h4 class="w-28 text-right  font-bold">Capacidad:</h4>
@@ -36,7 +38,7 @@ title="Vehiculo">
                         </div>
                     </section>
 
-                    <section class="flex flex-col items-center space-y-5">
+                    <section class="flex flex-col justify-start items-end space-y-5">
                         <div class="flex space-x-10 items-center">
                             <h4 class=" text-right  font-bold">Since:</h4>
                             <input type="date" name="" id="" class=" border-2 rounded-md px-7 py-2">
@@ -46,6 +48,10 @@ title="Vehiculo">
                             <h4 class=" text-right  font-bold">Till:</h4>
                             <input type="date" name="" id="" class=" border-2 rounded-md px-7 py-2">
                         </div>
+
+                        <button class="btn self-start">
+                            Iniciar Mantenimiento
+                        </button>
 
                     </section>
 
