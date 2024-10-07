@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // Ruta principal que gestione el login 
 Route::get('/', function () {
-    return view('');
+    return view('admin.vehicles-show');
 });
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('loginForm');
