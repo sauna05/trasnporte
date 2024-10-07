@@ -15,7 +15,7 @@ class vehicleController extends Controller
 
     public function create()
     {
-        return view('admin.create_vehicles');
+        return view('admin.vehicles-create');
     }
 
     public function store(Request $request)

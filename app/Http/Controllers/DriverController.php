@@ -26,7 +26,7 @@ class DriverController extends Controller
 
     public function create(){
 
-        return view('admin.driver_form');
+        return view('admin.drivers-create');
     }
  
         public function registerDriver(Request $request)

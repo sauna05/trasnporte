@@ -34,7 +34,7 @@
                     @endif
                 @endforeach
             @else
-                <p>No customers found.</p>
+                <p>mensDo.</p>
             @endif
         </div>
     </div>
