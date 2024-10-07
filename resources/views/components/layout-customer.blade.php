@@ -16,7 +16,7 @@
     <header class="flex flex-col ">
         <div class="py-2 px-4 flex justify-between items-center">
             <img src="{{ asset('images/icons/logo.svg') }}" alt="" class="h-20">
-            <h3 class="text-2xl font-semibold">Cliente </h3>  {{--- <small>{{Auth()->user()->name}}</small> --}}
+            <h3 class="text-2xl font-semibold">Hola, {{Auth()->user()->name}}  </h3>  {{--- <small>{{Auth()->user()->name}}</small> --}}
             <form action="{{route('cliente.logout')}}" method="POST" onclick="return confirmarEliminacion();" >
                 @csrf
                 <button type="submit" class="btn">Cerrar sesión</button>
