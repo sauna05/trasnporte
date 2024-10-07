@@ -61,7 +61,7 @@
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="imagen" class="font-medium text-gray-700 self-start py-1">Imagen</label>
-                    <input type="file" name="imagen" id="imagen" accept=".jpeg,.png,.jpg,gif" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
+                    <input type="file" name="imagen" id="imagen" accept="image/*"  class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
                 </div>
 
             </section>
