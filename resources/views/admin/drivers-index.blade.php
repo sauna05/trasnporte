@@ -16,7 +16,7 @@
                         @else
                             <img src="{{ asset('images/icons/anadir-conductor.png') }}" class="w-36" alt="Conductor por defecto">
                         @endif
-                        <img src="" alt="">
+                       
                     </div>
 
                     <article class="space-y-5 self-center">

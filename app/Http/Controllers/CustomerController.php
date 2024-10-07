@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
 
      public function index(){
-        return view('cliente.dashboard');
+        return view('cliente.orders-create');
      }
 
      

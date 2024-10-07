@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Order;
@@ -6,6 +7,7 @@ use App\Models\Route;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon; // Asegúrate de importar Carbon para manejar fechas
 
 class OrderController extends Controller
 {
@@ -24,7 +26,6 @@ class OrderController extends Controller
             'origin' => 'required|string',
             'destination' => 'required|string',
             'distance' => 'required|numeric',
-            'date' => 'required|date',
         ]);
     
         // Obtener el ID del usuario autenticado
@@ -44,13 +45,16 @@ class OrderController extends Controller
             'distance' => $request->distance,
             'status' => 'pendiente', // Estado inicial
         ]);
+
+        // Registrar la fecha actual usando Carbon
+        $fecha = Carbon::now(); // Obtiene la fecha y hora actual
     
         // Crear el pedido asociado a la ruta
         Order::create([
             'customer_id' => $customer->id, 
             'charge' => $request->charge,
             'route_id' => $route->id, 
-            'date' => $request->date,
+            'date' => $fecha, // Registra la fecha actual en la que hace el pedido
         ]);
     
         // Redirigir a una vista con un mensaje de éxito

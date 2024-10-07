@@ -40,7 +40,7 @@
                 @if($customer->user) 
                     <a class="w-2/3 space-y-3 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 block" href="#">
                         <div class="flex">
-                            <h4 class="w-16 text-right pr-4 font-bold">Documento:</h4>
+                            <h4 class="w-16 text-right pr-4 font-bold">DI:</h4>
                             <p class="parrafo">{{ $customer->user->document }}</p>
                         </div>
                        

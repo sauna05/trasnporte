@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // Ruta principal que gestione el login 
 Route::get('/', function () {
-    return view('cliente.routes-index');
+    return view('cliente.routes-show');
 });
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('loginForm');
@@ -26,13 +26,10 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/admin/register', [VehicleController::class, 'store'])->name('register_vehicle');
     Route::get('/admin/vehicles', [VehicleController::class, 'index'])->name('admin.vehicles');
 
-    // Uncomment these routes if needed
-    // Route::post('/admin/vehicles', [VehicleController::class, 'store'])->name('admin.vehicles.store');
-    // Route::get('/admin/vehicles/create', [VehicleController::class, 'create'])->name('admin.vehicles.create');
-    // Route::get('/admin/vehicles/{id}', [VehicleController::class, 'show'])->name('admin.vehicles.show');
+   
     // Route::get('/admin/vehicles/{id}/edit', [VehicleController::class, 'edit'])->name('admin.vehicles.edit');
     // Route::post('/admin/vehicles/{id}', [VehicleController::class, 'update'])->name('admin.vehicles.update');
-    // Route::delete('/admin/vehicles/{id}', [VehicleController::class, 'destroy'])->name('admin.vehicles.destroy');
+
 
     Route::get('/admin/clienteView', [CustomerController::class, 'indexCustomer'])->name('admin.cliente_index');
     Route::get('/admin/cliente', [CustomerController::class, 'createForm'])->name('admin.clienteForm');
@@ -66,6 +63,10 @@ Route::middleware(['role:cliente'])->group(function () {
     Route::get('/cliente/dashboard', [CustomerController::class, 'index'])->name('cliente.dashboard');
     Route::get('/cliente/createOrder', [OrderController::class, 'create'])->name('cliente.orders-create');
     Route::post('/cliente/registerorder', [OrderController::class, 'store'])->name('cliente.registerOrder');
+
+    
+    Route::post('/admin/logoutCustomer', action: [UserController::class, 'logout'])->name('cliente.logout');
+    
 });
 
 

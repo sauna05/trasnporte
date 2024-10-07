@@ -20,10 +20,6 @@ class UserController extends Controller
     /**
      * Show the registration form.
      */
-    public function showRegistrationForm()
-    {
-        return view('auth.register');
-    }
 
     public function  loginForm(){
         return view('login');

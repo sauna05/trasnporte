@@ -105,6 +105,7 @@ class DriverController extends Controller
         return view('drivers.show', ['driver' => $driver]);
     }
 
+
     public function edit($id)
     {
         $driver = Driver::with('user')->findOrFail($id);
@@ -152,4 +153,5 @@ class DriverController extends Controller
 
        return redirect()->route('drivers.index')->with('success', 'Conductor eliminado con éxito');
    }
+   
 }
