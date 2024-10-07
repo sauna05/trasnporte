@@ -34,6 +34,7 @@ Route::middleware(['role:admin'])->group(function () {
     // Route::post('/admin/vehicles/{id}', [VehicleController::class, 'update'])->name('admin.vehicles.update');
     // Route::delete('/admin/vehicles/{id}', [VehicleController::class, 'destroy'])->name('admin.vehicles.destroy');
 
+    Route::get('/admin/clienteView', [CustomerController::class, 'indexCustomer'])->name('admin.cliente_index');
     Route::get('/admin/cliente', [CustomerController::class, 'createForm'])->name('admin.clienteForm');
     Route::post('/admin/cliente', [CustomerController::class, 'registerCustomer'])->name('admin.registerCliente');
 

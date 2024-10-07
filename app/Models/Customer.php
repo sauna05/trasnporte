@@ -17,11 +17,12 @@ class Customer extends Model
 
 
     // Definición de la relación con el usuario
+    
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
     
     
 }

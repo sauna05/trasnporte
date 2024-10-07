@@ -21,14 +21,14 @@ class CustomerController extends Controller
 
      
     public function indexCustomer(){
-        $customer = Customer::with('users')->get();
+        $customers = Customer::with('user')->get();
         return view('admin.customers-index',compact('customers'));
     }
 
-    // public function createForm(){
-    //     $roles = Role::all();
-    //     return view('admin.cliente_form',compact('roles'));
-    // }
+    public function createForm(){
+        
+        return view('admin.cliente_form');
+    }
      
     public function registerCustomer(Request $request)
     {
