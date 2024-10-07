@@ -34,17 +34,11 @@ title="Hacer Pedido">
                     <label for="distance" class="font-medium text-gray-700 self-start py-1">Distancia (km)</label>
                     <input type="number" name="distance" id="distance" step="0.01" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" required>
                 </div>
-        
-                <div class="mb-4 flex flex-col items-center w-fit">
-                    <label for="date" class="font-medium text-gray-700 self-start py-1">Fecha</label>
-                    <input type="date" name="date" id="date" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" required>
-                </div>
-                
             </section>
-
         </div>
-       
-            <button type="submit" class="btn">Crear Pedido</button>
+
+            <button type="submit" class="btn mt-10">Crear Pedido</button>
+            
     </form>
 </div>
 
