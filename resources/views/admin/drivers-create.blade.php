@@ -56,7 +56,7 @@
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="experience" class="font-medium text-gray-700 self-start py-1">Experiencia (en años)</label>
-                    <input type="number" name="experience" id="experience" required min="0" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
+                    <input type="number" name="experience" id="experience" required min="1" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
@@ -67,6 +67,6 @@
             </section>
         </div>
 
-        <button type ="submit "class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-md transition duration-200">Registrar</button>
+        <button type ="submit "class="btn">Registrar</button>
     </form>  
 </x-layout-admin>
