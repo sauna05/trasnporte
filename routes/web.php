@@ -3,9 +3,10 @@ use App\Http\Controllers\vehicleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\driverRouteController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RouteController;
-
+use App\Models\DriverRoute;
 use Illuminate\Support\Facades\Route;
 
 // Ruta principal que gestione el login 
@@ -41,6 +42,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/routes-show/{id}', [RouteController::class,'route_show'])->name('admin.routes-show');
     Route::get('/admin/routes',[RouteController::class,'routes_index'])->name('admin.routesForm');
     Route::get('/admin/routesDocument',[RouteController::class,'buscadorDocument'])->name('admin.showDocument');
+    //iniciar ruta
+    Route::post('/admin/routes_post',[driverRouteController::class,'iniciarRuta'])->name('admin.iniciar_ruta');
 
 
     //rutas de conductores
@@ -48,6 +51,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/driverView', [DriverController::class, 'create'])->name('admin.driverForm');
     Route::post('/admin/driverRegister', [DriverController::class, 'registerDriver'])->name('admin.registerDriver');
     Route::get('/admin/driver/{id}', [DriverController::class, 'show'])->name('admin.driver_show');
+
+
 
 });
 

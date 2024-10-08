@@ -4,8 +4,7 @@
     <section class="flex space-x-20">
         @if($driver->imagen)
 
-          <img src="{{ asset('storage/' . $driver->imagen) }}" class="w-96" alt="Conductor">
-            
+          <img src="{{ asset('storage/' . $driver->imagen) }}" class="w-96" alt="Conductor">     
         @else        
           <img src="{{ asset('images/customers/Donna-sorridente-830x625.webp') }}" class="w-96" alt="Conductor">
         @endif

@@ -7,25 +7,29 @@ use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Customer;
+use App\Models\Vehicle;
 
 class RouteController extends Controller
 {
 
+
+
     public function route_show($id)
     {
-        // Obtener la ruta específica por ID, junto con el cliente y su información
-        $route = Route::with(['orders.customer.user:id,name,document']) // Asegúrate de que 'Route' sea el modelo correcto
-            ->findOrFail($id); // Busca la ruta por ID o lanza un error 404 si no se encuentra
+        $customer = Customer::with(['orders.route', 'user:id,name,document'])
+            ->has('orders')
+            ->findOrFail($id);
+            
+        $drivers = Driver::with('user')->get();
+        $vehicles = Vehicle::all();
     
-        // Puedes acceder al cliente a través de la relación
-        $customer = $route->orders->first()->customer; // Asumiendo que hay al menos una orden
-    
-        return view('admin.routes-show', compact('route', 'customer'));
+        return view('admin.routes-show', compact('customer', 'drivers', 'vehicles'));
     }
+    
 
     public function routes_index()
     {
-        // Obtener todos los clientes que tienen al menos una orden asociada, junto con las rutas y el nombre del usuario
+        
         $customers = Customer::with(['orders.route', 'user:id,name,document'])
             ->has('orders') // Filtra para obtener solo clientes con órdenes
             ->get();
