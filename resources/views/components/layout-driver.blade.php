@@ -25,8 +25,8 @@
         </div>
 
         <nav class="flex text-center h-11 bg-azul-principal-0 justify-between items-center">
-            <a href="{{ route('admin.routesForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Hacer un pedido</a>
-                <a href="{{route('admin.drivers')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Estado de mis pedidos</a>
+            <a href="{{ route('admin.routesForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mi Perfil</a>
+                <a href="{{route('admin.drivers')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mis rutas</a>
 
         </nav>
     </header>

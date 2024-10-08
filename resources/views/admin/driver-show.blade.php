@@ -48,9 +48,14 @@
                 <p class="parrafo">4</p> <!-- Mostrar entregas a tiempo -->
             </div>
 
-            <div class="flex space-x-5">
+            <div class="flex space-x-5 items-center ">
                 <h4 class="w-28 text-right font-bold">Accidentes:</h4>
-                <p class="parrafo">0</p> <!-- Mostrar número de accidentes -->
+              <!-- Mostrar número de accidentes -->
+                <form action="" class="flex items-center">
+                    <label for="accidents"></label>
+                    <input type="number" min="0" name="accidents" id="accidents" class="w-24 mr-5 bg-slate-300 rounded-md pl-2">
+                    <button class="btn h-10">Actualizar Accidentes</button>
+                </form>
             </div>
 
             <div class="flex space-x-5 items-center">
