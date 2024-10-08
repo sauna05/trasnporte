@@ -38,9 +38,40 @@ class DriverController extends Controller
             'experience' => 'required|integer|min:0',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'document' => 'required|string|min:10|unique:users,document', 
-            //'role_id' => 'required|exists:roles,id',
+        ], [
+            'imagen.image' => 'El archivo debe ser una imagen válida.',
+            'imagen.mimes' => 'La imagen debe ser de tipo: jpeg, png, jpg o gif.',
+            'imagen.max' => 'La imagen no debe pesar más de 2 MB.',
+            
+            'license.required' => 'El campo licencia es obligatorio.',
+            'license.string' => 'La licencia debe ser una cadena de texto.',
+            'license.max' => 'La licencia no puede tener más de 255 caracteres.',
+            
+            'experience.required' => 'El campo experiencia es obligatorio.',
+            'experience.integer' => 'La experiencia debe ser un número entero.',
+            'experience.min' => 'La experiencia no puede ser negativa.',
+            
+            'name.required' => 'El campo nombre es obligatorio.',
+            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.max' => 'El nombre no puede tener más de 255 caracteres.',
+            
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.string' => 'El correo electrónico debe ser una cadena de texto.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'email.max' => 'El correo electrónico no puede tener más de 255 caracteres.',
+            'email.unique' => 'El correo electrónico ya ha sido tomado.',
+            
+            'password.required' => 'El campo contraseña es obligatorio.',
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+            
+            'document.required' => 'El campo documento es obligatorio.',
+            'document.string' => 'El documento debe ser una cadena de texto.',
+            'document.min' => 'El documento debe tener al menos 10 caracteres.',
+            'document.unique' => 'El documento ya ha sido registrado.'
         ]);
 
         if ($validator->fails()) {
@@ -73,7 +104,7 @@ class DriverController extends Controller
 
         $driver->save();
 
-        return redirect()->route('admin.drivers')->with('success', 'Conductor registrado con éxito');
+        return redirect()->route('admin.drivers')->with('message', 'Conductor registrado con éxito');
     }
 
     public function assignRoutesToDriver(Request $request, $driverId)
@@ -98,12 +129,15 @@ class DriverController extends Controller
 
       return redirect()->route('drivers.index')->with('success', 'Rutas asignadas con éxito al conductor.');
   }
+  public function show($id)
+  {
+      // Obtener el conductor específico junto con su usuario
+      $driver = Driver::with('user')->findOrFail($id);
+      
+      // Pasar el conductor a la vista
+      return view('admin.driver-show', compact('driver'));
+  }
 
-    public function show($id)
-    {
-        $driver = Driver::with('user')->findOrFail($id);
-        return view('drivers.show', ['driver' => $driver]);
-    }
 
     public function edit($id)
     {
@@ -152,4 +186,5 @@ class DriverController extends Controller
 
        return redirect()->route('drivers.index')->with('success', 'Conductor eliminado con éxito');
    }
+   
 }

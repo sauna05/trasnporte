@@ -9,15 +9,15 @@
         {{-- Listado de Conductores --}}
         @if ($drivers && $drivers->isNotEmpty())
             @foreach ($drivers as $driver)
-                <a class="flex w-2/4 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 space-x-5" href="#">
+                <a class="flex w-2/4 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 space-x-5" href="{{route('admin.driver_show',$driver->id)}}">
                     <div class="flex justify-center items-center">
                         @if($driver->imagen) 
                             <img src="{{ asset('storage/' . $driver->imagen) }}" class="w-36" alt="{{ $driver->user->name }}">
                         @else
-                            <img src="{{ asset('images/icons/anadir-conductor.png') }}" class="w-36" alt="Conductor por defecto">
+                            <img src="{{ asset('images/conductor-por-defecto.png') }}" class="w-36" alt="Conductor por defecto">
                         @endif
-                    </div>
 
+                    </div>
                     <article class="space-y-5 self-center">
                         <div class="flex space-x-5">
                             <h4 class="w-28 text-right font-bold">Nombre:</h4>

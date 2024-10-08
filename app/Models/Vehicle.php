@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     use HasFactory;
-    protected $fillable = ['type', 'capacity', 'status'];
+    protected $fillable = ['type', 'capacity', 'status','imagem'];
 
     
     public function maintenances()

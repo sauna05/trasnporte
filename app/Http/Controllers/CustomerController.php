@@ -16,19 +16,19 @@ class CustomerController extends Controller
      */
 
      public function index(){
-        return view('cliente.dashboard');
+        return view('cliente.orders-create');
      }
 
      
     public function indexCustomer(){
-        $customer = Customer::with('users')->get();
+        $customers = Customer::with('user')->get();
         return view('admin.customers-index',compact('customers'));
     }
 
-    // public function createForm(){
-    //     $roles = Role::all();
-    //     return view('admin.cliente_form',compact('roles'));
-    // }
+    public function createForm(){
+        
+        return view('admin.customer-create');
+    }
      
     public function registerCustomer(Request $request)
     {
@@ -40,7 +40,15 @@ class CustomerController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'document' => 'required|string|min:10|unique:users,document', 
             //'role_id' => 'required|exists:roles,id', 
-        ]);
+        ],[
+            'email'=>'El correo electrónico ya ha sido tomado.',
+            'document'=>'El campo del documento debe tener al menos 10 caracteres',
+            'confirmed'=>'La confirmación del campo de contraseña no coincide.',
+            'password'=>'El campo de contraseña debe tener al menos 8 caracteres.',
+
+
+        ]
+    );
     
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -70,10 +78,8 @@ class CustomerController extends Controller
             "user_id" => $user->id,  // Aquí obtenemos el el id del usuario recien creadi
             'phone_number' => $request->phone_number,
         ]);
-
-
     
-        return redirect()->route('admin.vehicles')->with('success', 'Cliente registrado con éxito.');
+        return redirect()->route('admin.clienteForm')->with('message', 'Cliente creado con éxito.');
     }
     /**
      * Display a listing of the customers.

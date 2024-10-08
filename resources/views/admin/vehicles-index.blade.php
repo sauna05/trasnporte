@@ -15,7 +15,13 @@
             @foreach ($vehicles as $vehicle)
                 <a class="flex w-2/4 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 space-x-5" href="#">
                     <div class="flex justify-center items-center">
-                        <img src="{{ asset('images/camion-por-defecto.png') }}" class="w-48" alt="">
+                        @if($vehicle->imagen) 
+                            <img src="{{ asset('storage/' . $vehicle->imagen) }}" class="w-36" alt="{{ $vehicle->type }}">
+                        @else
+                             
+                            <img src="{{ asset('images/camion-por-defecto.png') }}" class="w-36" alt="Conductor por defecto">
+                        @endif
+                      
                     </div>
 
                     <article class="space-y-5 self-center">

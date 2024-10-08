@@ -26,21 +26,19 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/admin/register', [VehicleController::class, 'store'])->name('register_vehicle');
     Route::get('/admin/vehicles', [VehicleController::class, 'index'])->name('admin.vehicles');
 
-    // Uncomment these routes if needed
-    // Route::post('/admin/vehicles', [VehicleController::class, 'store'])->name('admin.vehicles.store');
-    // Route::get('/admin/vehicles/create', [VehicleController::class, 'create'])->name('admin.vehicles.create');
-    // Route::get('/admin/vehicles/{id}', [VehicleController::class, 'show'])->name('admin.vehicles.show');
+   
     // Route::get('/admin/vehicles/{id}/edit', [VehicleController::class, 'edit'])->name('admin.vehicles.edit');
     // Route::post('/admin/vehicles/{id}', [VehicleController::class, 'update'])->name('admin.vehicles.update');
-    // Route::delete('/admin/vehicles/{id}', [VehicleController::class, 'destroy'])->name('admin.vehicles.destroy');
 
+
+    Route::get('/admin/clienteView', [CustomerController::class, 'indexCustomer'])->name('admin.cliente_index');
     Route::get('/admin/cliente', [CustomerController::class, 'createForm'])->name('admin.clienteForm');
     Route::post('/admin/cliente', [CustomerController::class, 'registerCustomer'])->name('admin.registerCliente');
 
     Route::post('/admin/logout', action: [UserController::class, 'logout'])->name('admin.logout');
 
-    //rutas
-
+    //gestion de rutas 
+    Route::get('/admin/routes-show/{id}', [RouteController::class,'route_show'])->name('admin.routes-show');
     Route::get('/admin/routes',[RouteController::class,'routes_index'])->name('admin.routesForm');
     Route::get('/admin/routesDocument',[RouteController::class,'buscadorDocument'])->name('admin.showDocument');
 
@@ -49,6 +47,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/driver', [DriverController::class, 'index'])->name('admin.drivers');
     Route::get('/admin/driverView', [DriverController::class, 'create'])->name('admin.driverForm');
     Route::post('/admin/driverRegister', [DriverController::class, 'registerDriver'])->name('admin.registerDriver');
+    Route::get('/admin/driver/{id}', [DriverController::class, 'show'])->name('admin.driver_show');
 
 });
 
@@ -65,6 +64,10 @@ Route::middleware(['role:cliente'])->group(function () {
     Route::get('/cliente/dashboard', [CustomerController::class, 'index'])->name('cliente.dashboard');
     Route::get('/cliente/createOrder', [OrderController::class, 'create'])->name('cliente.orders-create');
     Route::post('/cliente/registerorder', [OrderController::class, 'store'])->name('cliente.registerOrder');
+
+    
+    Route::post('/admin/logoutCustomer', action: [UserController::class, 'logout'])->name('cliente.logout');
+    
 });
 
 

@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    @if (session('success'))
+    @if (session('message'))
         <div class="mb-4 text-green-600">
             {{ session('success') }}
         </div>
@@ -26,17 +26,17 @@
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="document" class="font-medium text-gray-700 self-start py-1">Número de Documento</label>
-                    <input type="text" name="document" id="document" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su documento">
+                    <input type="text" name="document" id="document" value="{{ old('document') }}" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su documento">
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="name" class="text-gray-700 self-start py-1">Nombre</label>
-                    <input type="text" name="name" id="name" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su nombre">
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su nombre">
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="email" class="text-gray-700 self-start py-1">Email</label>
-                    <input type="email" name="email" id="email" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su email">
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su email">
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
@@ -51,17 +51,17 @@
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="license" class="font-medium text-gray-700 self-start py-1">Licencia</label>
-                    <input type="text" name="license" id="license" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su licencia">
+                    <input type="text" name="license" id="license" value="{{ old('license') }}" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su licencia">
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="experience" class="font-medium text-gray-700 self-start py-1">Experiencia (en años)</label>
-                    <input type="number" name="experience" id="experience" required min="1" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
+                    <input type="number" name="experience" id="experience" value="{{ old('experience') }}" required min="1" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="imagen" class="font-medium text-gray-700 self-start py-1">Imagen</label>
-                    <input type="file" name="imagen" id="imagen" accept=".jpeg,.png,.jpg,gif" class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
+                    <input type="file" name="imagen" id="imagen" accept="image/*"  class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
                 </div>
 
             </section>
@@ -69,4 +69,4 @@
 
         <button type ="submit "class="btn">Registrar</button>
     </form>  
-</x-layout-admin>
+</x-layout-admin> 

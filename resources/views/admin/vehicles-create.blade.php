@@ -3,7 +3,23 @@ title="Registrar Vehiculo">
 
 <h1 class="text-2xl font-bold mb-5">Registrar Vehiculo</h1>
 
-<form  method="POST" action="{{route('register_vehicle')}}" enctype="multipart/form-data">
+    @if ($errors->any())
+    <div class="mb-4">
+        <div class="text-red-600">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </div>
+    </div>
+    @endif
+
+    @if (session('message'))
+    <div class="bg-green-500 text-white p-4 rounded mb-4">
+        {{ session('message') }}
+    </div>
+    @endif
+
+<form  method="POST" action="{{route('register_vehicle')}}"  enctype="multipart/form-data">
     @csrf
     
     <article class="flex justify-center items-center space-x-28">
@@ -26,7 +42,7 @@ title="Registrar Vehiculo">
 
                 <div class="flex justify-center items-center flex-col">
                     <img src="{{asset('images\camion-por-defecto.png')}}" class="w-36" alt="">
-                    <input type="file" name="foto" id="foto" class="w-fit">
+                    <input type="file" name="imagen"  accept="image/*" id="imagen" class="w-fit">
                 </div>
             </div>
         </section>
