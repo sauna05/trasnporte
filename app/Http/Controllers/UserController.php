@@ -27,20 +27,24 @@ class UserController extends Controller
 
 
 
-        public function login(Request $request)
+    public function login(Request $request)
     {
         // Validar las credenciales de inicio de sesión
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:8',
         ], [
-            'password' => 'La contraseña debe ser al menos de 8 caracteres.',
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'password.required' => 'El campo contraseña es obligatorio.',
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
         ]);
-
+    
         // Intentar autenticar al usuario
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
-
+    
             // Redirigir según el rol del usuario
             if ($user->roles()->where('name', 'admin')->exists()) {
                 return redirect()->route('admin.vehicles');
@@ -49,15 +53,12 @@ class UserController extends Controller
             } elseif ($user->roles()->where('name', 'conductor')->exists()) {
                 return redirect()->route('conductor.dashboard');
             }
-
-            // return redirect()->route('home'); 
-
         }
-
+    
         // Si las credenciales no son correctas, redirigir de nuevo con errores
         return redirect()->back()->withErrors([
             'email' => 'Las credenciales no coinciden con nuestros registros.',
-        ]);
+        ])->withInput(); // Mantiene los datos ingresados
     }
 
 

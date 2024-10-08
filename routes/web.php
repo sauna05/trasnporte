@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // Ruta principal que gestione el login 
 Route::get('/', function () {
-    return view('admin.vehicles-show');
+    return view('admin.routes-show');
 });
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('loginForm');
@@ -37,8 +37,8 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::post('/admin/logout', action: [UserController::class, 'logout'])->name('admin.logout');
 
-    //rutas
-
+    //gestion de rutas 
+    Route::get('/admin/routes-show/{id}', [RouteController::class,'route_show'])->name('admin.routes-show');
     Route::get('/admin/routes',[RouteController::class,'routes_index'])->name('admin.routesForm');
     Route::get('/admin/routesDocument',[RouteController::class,'buscadorDocument'])->name('admin.showDocument');
 
@@ -47,6 +47,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/driver', [DriverController::class, 'index'])->name('admin.drivers');
     Route::get('/admin/driverView', [DriverController::class, 'create'])->name('admin.driverForm');
     Route::post('/admin/driverRegister', [DriverController::class, 'registerDriver'])->name('admin.registerDriver');
+    Route::get('/admin/driver/{id}', [DriverController::class, 'show'])->name('admin.driver_show');
 
 });
 

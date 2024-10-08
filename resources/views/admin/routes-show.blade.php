@@ -1,4 +1,5 @@
 <x-layout-admin
+
 title="Ruta">
 
 <h1 class="text-2xl font-bold mb-5">Nombre Cliente - Route</h1>
@@ -9,34 +10,34 @@ title="Ruta">
         <article class="w-1/2 space-y-3  rounded-md p-2 ">
             <div class="flex">
                 <h4 class="w-16 text-right pr-4 font-bold">Cliente:</h4>
-                <p class="parrafo">Nombre Cliente</p>
+                <p class="parrafo">{{$customer->user->name}}</p>
             </div>
 
             <div class="flex">
                 <h4 class="w-16 text-right pr-4 font-bold">Estado:</h4>
-                <p class="parrafo">Pendiente</p>
+                <p class="parrafo">{{$customer->route->status}}</p>
             </div>
 
             <div class="flex">
                 <h4 class="w-16 text-right pr-4 font-bold">Carga:</h4>
-                <p class="parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad distinctio doloribus quasi ducimus nam exercitationem voluptatem perferendis adipisci, architecto minus magnam obcaecati, libero quisquam accusamus tenetur. Rerum labore autem architecto sint numquam nisi totam debitis, praesentium possimus provident necessitatibus explicabo.</p>
+                <p class="parrafo">{{$order->charge}}.</p>
             </div>
         </article>
 
         <article class=" space-y-3  rounded-md p-2">
             <div class="flex space-x-5">
                 <h4 class="w-16 text-right pr-4 font-bold">Origen:</h4>
-                <p class="parrafo">calle 19 # 32 avenida orameno valledupar</p>
+                <p class="parrafo">{{$order->route->origin}}</p>
             </div>
 
             <div class="flex space-x-5">
                 <h4 class="w-16 text-right pr-4 font-bold">Destino:</h4>
-                <p class="parrafo">carrera 49-43 curva cerrada en junto la avenida</p>
+                <p class="parrafo">{{$order->route->destination}}</p>
             </div>
 
             <div class="flex space-x-5">
                 <h4 class="w-16 text-right pr-4 font-bold">Distancia:</h4>
-                <p class="parrafo">5 km</p>
+                <p class="parrafo">{{$order->route->distance}} km</p>
             </div>
             
         </article>

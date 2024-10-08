@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('type'); // Tipo de vehículo (e.g., camión, furgoneta)
             $table->integer('capacity'); // Capacidad del vehículo
             $table->string('status')->default('disponible'); // Estado del vehículo (e.g., disponible, en mantenimiento)
+            $table->string('imagen')->nullable();
             $table->timestamps(); // Tiempos de creación y actualización
         }); 
     }
