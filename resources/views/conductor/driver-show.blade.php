@@ -1,4 +1,4 @@
-<x-layout-admin
+<x-layout-conductor
 title="Conductor">
 
 
@@ -31,6 +31,7 @@ title="Conductor">
             </article>
         
 
+                </form>
             </div>  
 
         </article>
@@ -84,4 +85,4 @@ title="Conductor">
 
 
 </section>
-</x-layout-admin>
+</x-layout-conductor>
