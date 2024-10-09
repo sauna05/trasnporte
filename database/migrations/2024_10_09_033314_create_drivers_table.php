@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('license_id')->constrained('licences')->onDelete('cascade')->onUpdate('cascade');
          
             $table->integer('experience'); // Años de experiencia
-            $table->string('availability')->default('disponible'); // Disponibilidad default
+            $table->enum('availability',['disponible','ocupado'])->default('disponible');
             $table->timestamps();
         });
     }

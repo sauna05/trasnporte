@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 // Ruta principal que gestione el login 
 Route::get('/', function () {
-    return view('admin.driver-show');
+    return view('conductor.driver-show');
 });
 
 Route::get('/login', [UserController::class, 'loginForm'])->name('loginForm');
@@ -52,16 +52,14 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/admin/driverRegister', [DriverController::class, 'registerDriver'])->name('admin.registerDriver');
     Route::get('/admin/driver/{id}', [DriverController::class, 'show'])->name('admin.driver_show');
 
-
-
 });
-
-
 
 // // Rutas para conductores
 Route::middleware(['role:conductor'])->group(function () {
-    Route::get('/conductor/dashboard', [DriverController::class, 'indexdriver'])->name('conductor.dashboard');
+    Route::get('/conductor/dashboards        ', [DriverController::class, 'indexDriver'])->name('conductor.routes-index');
+
     // Otras rutas para conductores
+    Route::post('/admin/logoutDriver', action: [UserController::class, 'logout'])->name('conductor.logout');
 });
 
 // Rutas para clientes
@@ -70,7 +68,6 @@ Route::middleware(['role:cliente'])->group(function () {
     Route::get('/cliente/createOrder', [OrderController::class, 'create'])->name('cliente.orders-create');
     Route::post('/cliente/registerorder', [OrderController::class, 'store'])->name('cliente.registerOrder');
     Route::get('/cliente/route-view', [RouteController::class, 'route_customer'])->name('cliente.route-asig');
-
     
     Route::post('/admin/logoutCustomer', action: [UserController::class, 'logout'])->name('cliente.logout');
     

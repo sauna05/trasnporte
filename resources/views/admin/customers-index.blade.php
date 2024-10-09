@@ -33,7 +33,7 @@
                 </a>
             @endforeach
         @else
-            <div class="text-center text-lg font-semibold text-gray-700">
+        <div class="text-center text-lg font-semibold text-gray-700 bg-yellow-200 border border-yellow-400 rounded p-4">
                 No hay clientes registrados.
             </div>
         @endif

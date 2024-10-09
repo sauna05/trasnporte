@@ -51,7 +51,7 @@ class UserController extends Controller
             } elseif ($user->roles()->where('name', 'cliente')->exists()) {
                 return redirect()->route('cliente.dashboard');
             } elseif ($user->roles()->where('name', 'conductor')->exists()) {
-                return redirect()->route('conductor.dashboard');
+                return redirect()->route('conductor.routes-index');
             }
         }
     

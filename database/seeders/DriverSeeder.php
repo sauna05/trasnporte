@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Driver; // Asegúrate de importar el modelo Driver
+use App\Models\Licence;
 use App\Models\User;   // Asegúrate de importar el modelo User
 use App\Models\Role;   // Asegúrate de importar el modelo Role
 use Illuminate\Support\Facades\Hash;
@@ -18,32 +19,36 @@ class DriverSeeder extends Seeder
         // Crear usuarios para los conductores
         $users = [
             [
-                'name' => 'Alexander Sauna',
-                'email' => 'alexandersauna05@gmail.com',
+                'document'=>'3333399999',
+                'name' => 'lionelMessi',
+                'email' => 'messi05@gmail.com',
                 'password' => Hash::make('password1'), // Cambia la contraseña según sea necesario
             ],
             [
-                'name' => 'Sauna',
-                'email' => 'sauna@gmail.com',
+                'document'=>'9999911111',
+                'name' => 'Juandiego',
+                'email' => 'juandiego@gmail.com',
                 'password' => Hash::make('password2'),
             ],
         ];
 
+        
+        $license_id = 3;
+
         // Crear cada usuario y luego crear el driver asociado
         foreach ($users as $userData) {
-            $user = User::create($userData); // Crear el usuario
+            $user = User::create($userData);
 
-            // Crear el driver asociado al usuario
             $driver = Driver::create([
                 'user_id' => $user->id,
-                'imagen' => null, // Puedes agregar una URL de imagen si lo deseas
-                'license' => 'LIC-' . strtoupper(substr(md5($user->email), 0, 6)), // Generar una licencia única
-                'experience' => rand(1, 10), // Generar años de experiencia aleatorios entre 1 y 10
-                'availability' => true, // Disponibilidad por defecto
+                'imagen' => null, 
+                'license_id' => $license_id, 
+                'experience' => rand(1, 10), 
+                'availability' => 'disponible', // Disponibilidad por defecto
             ]);
 
-            // Asignar un rol al conductor (por ejemplo, "driver")
-            $role = Role::firstOrCreate(['name' => 'conductor']); // Asegúrate de que el rol "driver" exista
+           
+            $role = Role::firstOrCreate(['name' => 'conductor']); 
 
             // Asociar el usuario al rol en la tabla role_user
             $user->roles()->attach($role->id);

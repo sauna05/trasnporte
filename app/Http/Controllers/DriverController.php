@@ -6,23 +6,29 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Route;
 use App\Models\Driver;
+use App\Models\Licence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\UserController;
-use App\Models\Licence;
 use Illuminate\Support\Facades\Validator;
 
 class DriverController extends Controller
 {
     public function index()
     {
-        $drivers = Driver::with('user')->get(); // Cargar la relación con el usuario
+        //vista para el mostrar imformacion del perfil del conductor
+        $drivers = Driver::with('user')->get(); 
         return view('admin.drivers-index', compact('drivers'));
     }
 
+
     public function indexDriver()
     {
-        return view('conductor.dashboard');
+        $user_id = Auth::user()->id;
+        $driver = Driver::with('user')->findOrFail($user_id);
+    
+        return view('conductor.driver-show',compact('driver'));
     }
 
     public function create(){

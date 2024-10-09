@@ -18,11 +18,13 @@ class CustomerSeeder extends Seeder
         // Crear usuarios para los clientes
         $users = [
             [
-                'name' => 'Alexander Sauna',
+                'document'=>'0000011111',
+                'name' => 'Gomeok',
                 'email' => 'xander@gmail.com',
                 'password' => Hash::make('password1'), // Cambia la contraseña según sea necesario
             ],
             [
+                'document'=>'2222233333',
                 'name' => 'juan',
                 'email' => 'juan@gmail.com',
                 'password' => Hash::make('password2'),

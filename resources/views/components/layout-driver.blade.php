@@ -16,8 +16,8 @@
     <header class="flex flex-col ">
         <div class="py-2 px-4 flex justify-between items-center">
             <img src="{{ asset('images/icons/logo.svg') }}" alt="" class="h-20">
-            <h3 class="text-2xl font-semibold">Cliente</h3>
-            <form action="{{route('admin.logout')}}" method="POST" onclick="return confirmarEliminacion();" >
+            <h3 class="text-2xl font-semibold">Conductor {{Auth::user()->name}}</h3>
+            <form action="{{route('conductor.logout')}}" method="POST" onclick="return confirmarEliminacion();" >
                 @csrf
                 <button type="submit" class="btn">Cerrar sesión</button>
                 
@@ -25,8 +25,8 @@
         </div>
 
         <nav class="flex text-center h-11 bg-azul-principal-0 justify-between items-center">
-            <a href="{{ route('admin.routesForm') }}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mi Perfil</a>
-                <a href="{{route('admin.drivers')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mis rutas</a>
+            <a href="" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mi Perfil</a>
+                <a href="" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mis rutas</a>
 
         </nav>
     </header>

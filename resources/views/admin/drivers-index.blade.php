@@ -42,7 +42,9 @@
                 </a>
             @endforeach
         @else
-            <p>No hay conductores registrados.</p> 
+        <div class="text-center text-lg font-semibold text-gray-700 bg-yellow-200 border border-yellow-400 rounded p-4">
+            No hay conductores registrados.
+        </div>
         @endif
     </section>
 </x-layout-admin>

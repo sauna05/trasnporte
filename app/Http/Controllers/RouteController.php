@@ -41,6 +41,11 @@ class RouteController extends Controller
         return view('admin.routes-show', compact('customer', 'drivers', 'vehicles'));
 
     }
+
+    // public function route_show_driver(){
+    //     $driver=Driver::with();
+    //     return view('coductor.');
+    // }
     
 
     public function routes_index()
