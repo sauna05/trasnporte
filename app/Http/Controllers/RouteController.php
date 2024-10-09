@@ -34,7 +34,7 @@ class RouteController extends Controller
         $customer = Customer::with(['orders.route', 'user:id,name,document'])
             ->has('orders')
             ->findOrFail($id);
-    
+
         $drivers = Driver::with('user')->get();
         $vehicles = Vehicle::all();
     
