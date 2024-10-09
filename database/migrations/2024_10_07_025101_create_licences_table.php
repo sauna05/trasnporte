@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('driver_performance', function (Blueprint $table) {
+        Schema::create('licences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_drivers')->constrained('drivers')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('total deliveries');
-            $table->integer('on-time deliveries');
-            $table->integer('accidents')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('driver_performance');
+        Schema::dropIfExists('licences');
     }
 };

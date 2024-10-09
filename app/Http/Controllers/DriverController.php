@@ -9,6 +9,7 @@ use App\Models\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\UserController;
+use App\Models\Licence;
 use Illuminate\Support\Facades\Validator;
 
 class DriverController extends Controller
@@ -26,15 +27,16 @@ class DriverController extends Controller
 
     public function create(){
 
-        return view('admin.drivers-create');
+        $licences = Licence::all();
+        return view('admin.drivers-create',compact('licences'));
     }
  
         public function registerDriver(Request $request)
-    {
+        {
         // Validaciones
         $validator = Validator::make($request->all(), [
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'license' => 'required|string|max:255',
+            'license_id' => 'required|exists:licences,id',
             'experience' => 'required|integer|min:0',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -92,7 +94,7 @@ class DriverController extends Controller
         // Crear el conductor asociado al usuario
         $driver = new Driver();
         $driver->user_id = $user->id; // Asegúrate de tener esta relación definida
-        $driver->license = $request->license;
+        $driver->license_id = $request->license_id;
         $driver->experience = $request->experience;
         
 

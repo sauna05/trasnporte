@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,10 +11,16 @@ class Route extends Model
 
     protected $fillable = ['origin', 'destination', 'distance', 'status'];
 
-    // Relación de muchos a muchos con conductores y rutas
+    // Relación de muchos a muchos con conductores
     public function drivers()
     {
-        return $this->belongsToMany(Driver::class, 'driver_route');  
+        return $this->belongsToMany(Driver::class, 'driver_route');
+    }
+
+    // Relación de muchos a muchos con vehículos
+    public function vehicles()
+    {
+        return $this->belongsToMany(Vehicle::class, 'driver_route');
     }
 
     // Relación con los pedidos

@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('driver_route', function (Blueprint $table) {
+        Schema::create('driver_performances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('driver_id')->constrained()->onDelete('cascade');
-            $table->foreignId('route_id')->constrained()->onDelete('cascade');
+            $table->foreignId('id_drivers')->constrained('drivers')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('total deliveries');
+            $table->integer('on-time deliveries');
+            $table->integer('accidents')->nullable();
             $table->timestamps();
         });
-    }  
+    }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('driver_route');
+        Schema::dropIfExists('driver_performances');
     }
 };

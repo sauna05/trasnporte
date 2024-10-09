@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('imagen')->nullable();
-            $table->string('license'); // Licencia del conductor 
+            $table->foreignId('license_id')->constrained('licences')->onDelete('cascade')->onUpdate('cascade');
+         
             $table->integer('experience'); // Años de experiencia
             $table->string('availability')->default('disponible'); // Disponibilidad default
             $table->timestamps();

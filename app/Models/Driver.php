@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Driver extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'user_id','imagen','license', 'experience', 'availability'];
 
+    protected $fillable = ['user_id', 'imagen', 'license_id', 'experience', 'availability'];
 
-    //relacion de muchos a muchos entre conductores y rutas
     public function routes()
     {
         return $this->belongsToMany(Route::class, 'driver_route');
@@ -22,6 +21,9 @@ class Driver extends Model
         return $this->belongsTo(User::class);
     }
 
-    
-    
+    // Cambiar esta relación
+    public function licence()
+    {
+        return $this->belongsTo(Licence::class, 'license_id'); // Cambia belongsToMany a belongsTo
+    }
 }
