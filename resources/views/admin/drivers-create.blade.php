@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    @if (session('message'))
+    @if (session('success'))
         <div class="mb-4 text-green-600">
             {{ session('success') }}
         </div>
@@ -50,8 +50,12 @@
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
-                    <label for="license" class="font-medium text-gray-700 self-start py-1">Licencia</label>
-                    <input type="text" name="license" id="license" value="{{ old('license') }}" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su licencia">
+                    <label for="license_id" class="font-medium text-gray-700 self-start py-1">Licencia</label>
+                    <select name="license_id" id="license_id" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]">
+                        @foreach ($licences as $licence)
+                            <option value="{{ $licence->id }}">{{ $licence->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-4 flex flex-col items-center w-fit">
@@ -67,6 +71,6 @@
             </section>
         </div>
 
-        <button type ="submit "class="btn">Registrar</button>
+        <button type ="submit" class="btn">Registrar</button>
     </form>  
 </x-layout-admin> 

@@ -14,12 +14,12 @@
 
                 <div class="flex space-x-5">
                     <h4 class="w-28 text-right font-bold">Licencia:</h4>
-                    <p class="parrafo">{{$driver->license}}</p> <!-- Mostrar el tipo de licencia -->
+                    <p class="parrafo">{{ $driver->licence->name }}</p> <!-- Mostrar el tipo de licencia -->
                 </div>
 
                 <div class="flex space-x-5">
                     <h4 class="w-28 text-right font-bold">Experiencia:</h4>
-                    <p class="parrafo">{{$driver->experience}} años</p> <!-- Mostrar la experiencia -->
+                    <p class="parrafo">{{ $driver->experience }} {{ $driver->experience === 1 ? 'año' : 'años' }}</p> <!-- Mostrar la experiencia -->
                 </div>
 
                 <div class="flex space-x-5">

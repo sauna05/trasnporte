@@ -26,7 +26,7 @@
 
         <nav class="flex text-center h-11 bg-azul-principal-0 justify-between items-center">
             <a href="{{route('cliente.orders-create')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Hacer un pedido</a>
-            <a href="" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Estado de mis pedidos</a>
+            <a href="{{route('cliente.route-asig')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Estado de mis pedidos</a>
          
         </nav>
     </header>

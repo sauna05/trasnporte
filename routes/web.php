@@ -69,6 +69,7 @@ Route::middleware(['role:cliente'])->group(function () {
     Route::get('/cliente/dashboard', [CustomerController::class, 'index'])->name('cliente.dashboard');
     Route::get('/cliente/createOrder', [OrderController::class, 'create'])->name('cliente.orders-create');
     Route::post('/cliente/registerorder', [OrderController::class, 'store'])->name('cliente.registerOrder');
+    Route::get('/cliente/route-view', [RouteController::class, 'route_customer'])->name('cliente.route-show');
 
     
     Route::post('/admin/logoutCustomer', action: [UserController::class, 'logout'])->name('cliente.logout');
