@@ -33,7 +33,7 @@
     <section class="space-y-8 my-5">
         @if($customers->isEmpty() && isset($document))
             <div class="text-center text-lg font-semibold text-gray-700 bg-red-200 border border-red-400 rounded p-4">
-                No se encontro un cliente con ese documento.
+                No se encontró un cliente con ese documento.
             </div>
         @elseif($customers->isEmpty())
             <div class="text-center text-lg font-semibold text-gray-700 bg-yellow-200 border border-yellow-400 rounded p-4">
@@ -42,19 +42,19 @@
         @else
             @foreach($customers as $customer)
                 @if($customer->user) 
-                    <a class="w-2/3 space-y-3 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 block" href="{{route('admin.routes-show',$customer->id)}}">
-                        <div class="flex">
-                            <h4 class="w-24 text-right pr-4 font-bold">Documento:</h4>
-                            <p class="parrafo">{{ $customer->user->document }}</p>
-                        </div>
-                       
-                        <div class="flex">
-                            <h4 class="w-24 text-right pr-4 font-bold">Cliente:</h4>
-                            <p class="parrafo">{{ $customer->user->name }}</p>
-                        </div>
+                    @foreach($customer->orders as $order)
+                        @if($order->route) 
+                            <a class="w-2/3 space-y-3 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 block" href="{{ route('admin.routes-show', $order->id) }}">
+                                <div class="flex">
+                                    <h4 class="w-24 text-right pr-4 font-bold">Documento:</h4>
+                                    <p class="parrafo">{{ $customer->user->document }}</p>
+                                </div>
 
-                        @foreach($customer->orders as $order)
-                            @if($order->route) 
+                                <div class="flex">
+                                    <h4 class="w-24 text-right pr-4 font-bold">Cliente:</h4>
+                                    <p class="parrafo">{{ $customer->user->name }}</p>
+                                </div>
+
                                 <div class="flex">
                                     <h4 class="w-24 text-right pr-4 font-bold">Estado:</h4>
                                     <p class="parrafo">{{ $order->route->status }}</p>
@@ -64,9 +64,9 @@
                                     <h4 class="w-24 text-right pr-4 font-bold">Carga:</h4>
                                     <p class="parrafo">{{ $order->charge }}</p>
                                 </div>
-                            @endif
-                        @endforeach
-                    </a>
+                            </a>
+                        @endif
+                    @endforeach
                 @endif
             @endforeach
         @endif

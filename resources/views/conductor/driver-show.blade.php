@@ -65,9 +65,9 @@ title="Conductor">
                 {{-- ESTRELLAS --}}
 
                 <div class="flex">
-                    <img src="{{asset('images\icons\estrella.svg')}}" alt="">
-                    <img src="{{asset('images\icons\estrella.svg')}}" alt="">
-                    <img src="{{asset('images\icons\estrella.svg')}}" alt="">
+                    @for ($i = 0; $i < 3; $i++)
+                    <img src="{{ asset('images/icons/estrella.svg') }}" alt="Estrella">
+                  @endfor
                 </div>
 
             </div>

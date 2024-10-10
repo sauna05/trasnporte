@@ -34,7 +34,7 @@ title="Conductor">
     <section class="space-y-8 my-5">
         @if($customers->isEmpty())
             <div class="text-center text-lg font-semibold text-gray-700">
-                No hay rutas registradas.
+                Aun no tines rutas asignadas.
             </div>
         @else
             @foreach($customers as $customer)

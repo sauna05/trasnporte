@@ -25,11 +25,19 @@ class DriverController extends Controller
 
     public function indexDriver()
     {
+        // Obtiene el ID del usuario autenticado
         $user_id = Auth::user()->id;
-        $driver = Driver::with('user')->findOrFail($user_id);
     
-        return view('conductor.driver-show',compact('driver'));
+        // hacer relacion con licence y filtrar conducto por el id  de usuario
+        $driver = Driver::with(['user', 'Licence']) 
+            ->where('user_id', $user_id) 
+            ->firstOrFail(); 
+    
+        return view('conductor.driver-show', compact('driver'));
     }
+
+    
+    
 
     public function create(){
 

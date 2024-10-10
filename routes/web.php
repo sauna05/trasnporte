@@ -56,8 +56,8 @@ Route::middleware(['role:admin'])->group(function () {
 
 // // Rutas para conductores
 Route::middleware(['role:conductor'])->group(function () {
-    Route::get('/conductor/dashboards        ', [DriverController::class, 'indexDriver'])->name('conductor.routes-index');
-
+    Route::get('/conductor/dashboards', [DriverController::class, 'indexDriver'])->name('conductor.routes-index');
+    //Route::get('/conductor/routes', [driverRouteController::class, 'index'])->name('conductor.driver-route');
     // Otras rutas para conductores
     Route::post('/admin/logoutDriver', action: [UserController::class, 'logout'])->name('conductor.logout');
 });

@@ -50,18 +50,6 @@
                     <input type="password" name="password_confirmation" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Confirme su contraseña">
                 </div>
 
-                {{-- 
-                Uncomment and modify this section if you want to include roles
-                <div class="mb-4">
-                    <label for="role_id" class="block text-sm font-medium text-gray-700">Rol</label>
-                    <select name="role_id" id="" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
-                        @foreach($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                </div> 
-                --}}
-
                 <div class="mb-4 flex flex-col items-center w-fit">
                     <label for="phone_number" class="font-medium text-gray-700 self-start py-1">Teléfono</label>
                     <input type="text" name="phone_number" value="{{ old('phone_number') }}" required class="py-2 px-3 border-2 border-black rounded-md focus:outline-none w-[25rem]" placeholder="Ingrese su teléfono">
