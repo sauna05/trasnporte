@@ -24,7 +24,7 @@
                         @else
                             <img src="{{ asset('images/conductor-por-defecto.png') }}" class="w-36" alt="Conductor por defecto">
                         @endif
-
+                        
                     </div>
                     <article class="space-y-5 self-center">
                         <div class="flex space-x-5">
