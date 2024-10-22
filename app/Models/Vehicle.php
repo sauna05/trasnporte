@@ -17,8 +17,11 @@ class Vehicle extends Model
     }
 
     // Relación de muchos a muchos con rutas
-    public function routes()
-    {
-        return $this->belongsToMany(Route::class, 'driver_route');
+    // public function routes()
+    // {
+    //     return $this->belongsToMany(Route::class, 'driver_route');
+    // }
+    public function DriverRoute(){
+        return $this->hasMany(DriverRoute::class);
     }
 }

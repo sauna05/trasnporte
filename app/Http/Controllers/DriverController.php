@@ -36,6 +36,26 @@ class DriverController extends Controller
         return view('conductor.driver-show', compact('driver'));
     }
 
+    public  function rutas_driver(){
+        $user_id = Auth::user()->id;
+        $driver = Driver::with(['user', 'driverRoutes.route'])
+        ->findOrFail($user_id);
+
+    // Verificar si el conductor tiene rutas asignadas
+    if ($driver->driverRoutes->isEmpty()) {
+        return view('admin.route-asignada-driver', [
+            'message' => 'No hay rutas asignadas para este conductor.',
+            'driver' => $driver,
+            'hasRoutes' => false 
+        ]);
+    }
+
+    // Pasar los datos a la vista
+    return view('conductor.routes-index', [
+        'driver' => $driver,
+        'hasRoutes' => true // Indicador de que hay rutas
+    ]);
+    }
     
     
 
@@ -214,8 +234,15 @@ public function update(Request $request, $id) {
 
     ]);
 
+
     $driver->license_id=$datos['license_id'];
     $driver->experience=$datos['experience'];
+
+    // Si hay una nueva imagen, guardarla
+    if ($request->hasFile('imagen')) {
+        $imagePath = $request->file('imagen')->store('images', 'public');
+        $driver->imagen = $imagePath;
+    }
     $driver->save();
 
 

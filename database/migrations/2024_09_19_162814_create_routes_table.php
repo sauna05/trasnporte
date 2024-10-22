@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('destination'); // Destino de la ruta
             $table->float('distance'); // Distancia de la ruta
             $table->integer('price');
-            $table->enum('status', ['pendiente', 'en curso', 'entregada'])->default('pendiente'); // Estado de la entrega
+            $table->enum('status', ['pendiente', 'en curso', 'entregada'])->default('pendiente'); 
 
             $table->timestamps();
         });
@@ -30,4 +30,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('routes');
     }
+
 };

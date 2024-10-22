@@ -27,7 +27,7 @@
     <section class="flex justify-between px-28 py-5 items-center space-x-28 bg-white rounded-lg shadow-md mt-6">
         <div class="flex flex-col space-y-1 justify-center items-center ">
             <p>Ver Pedidos</p>
-            <a href="#" class="btn flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-200 p-2">
+            <a href="{{route('admin.customer_ruta',$customer->id)}}" class="btn flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-200 p-2">
                 <img src="{{ asset('images/icons/route.svg') }}" alt="">
             </a> <!-- Asegúrate de que esta ruta esté definida -->
         </div>

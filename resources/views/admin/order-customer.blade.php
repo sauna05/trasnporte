@@ -1,4 +1,4 @@
-<x-layout-customer title="Ruta">
+<x-layout-admin title="Pedido">
 
     <h1 class="text-3xl font-bold mb-5 text-gray-800">Nombre Cliente - Ruta</h1>
 
@@ -83,4 +83,4 @@
         @endforeach
     @endif
 
-</x-layout-customer>
+</x-layout-admin>

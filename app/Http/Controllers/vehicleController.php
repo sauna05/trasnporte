@@ -90,12 +90,12 @@ class vehicleController extends Controller
         return redirect()->route('admin.vehicles.index')->with('success', 'Vehículo actualizado con éxito');
     }
 
-    public function destroy($id)
+    public function delete_vehicle($id)
     {
         $vehicle = Vehicle::findOrFail($id);
         $vehicle->delete();
         
-        return redirect()->route('admin.vehicles.index')->with('success', 'Vehículo eliminado con éxito');
+        return redirect()->route('admin.vehicles')->with('success', 'Vehículo eliminado con éxito');
     }
 
     

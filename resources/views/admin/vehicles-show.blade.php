@@ -49,15 +49,29 @@
                         </button>
                     </section>
                 </form>
+
+                <form onclick="return returnEliminar();" action="{{ route('admin.vehicle_delete', $vehicle->id) }}" method="POST" class="flex flex-col space-y-1 justify-center items-center">
+                    @csrf
+                    @method("DELETE")
+                    <p>Eliminar Camion</p>
+                    <button type="submit" class="btn flex justify-center items-center bg-red-500 hover:bg-red-600 text-white rounded-md transition duration=200 p=2">
+                        <img src="{{ asset('images/icons/delete.svg') }}" alt="">
+                    </button>
+                </form>
             </div>  
         </article>
 
-        {{-- En caso de que el camión se encuentre en ruta --}}
+        {{-- En caso de que el camión se encuentre en ruta
         <div class="flex flex-col items-center ">
             <h1 class="text-3xl font-bold text-gray-800 mb-5">Ruta Actual</h1>
             <a href="#" class="btn flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration=200 px=4 py=2">Ver Ruta Asignada</a>
-        </div>
+        </div> --}}
     </section>
+    <script>
+        function returnEliminar() {
+            return confirm('¿Está seguro que desea eliminar al vehiculo?');
+        }
+    </script>
 </x-layout-admin>
 
 

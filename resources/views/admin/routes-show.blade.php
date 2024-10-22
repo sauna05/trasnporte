@@ -41,7 +41,7 @@
     <h1 class="text-2xl font-bold my-5">Iniciar Ruta</h1>
 
     <section>
-        @if($order->route->status !== 'en curso')
+        @if($order->route->status !== 'en curso' && $order->route->status !== 'entregada')
             <form action="{{ route('admin.iniciar_ruta') }}" method="POST" class="space-y-10">
                 @csrf
                 <input type="hidden" name="route_id" value="{{ $order->route->id }}">
@@ -66,12 +66,19 @@
                     </div>
                 </div>
 
-                <button class="btn">
+                <button type="submit" class="btn">
                     Iniciar ruta
                 </button>
             </form>
+        @elseif($order->route->status === 'entregada')
+          <div class="bg-red-200 border border-red-400 text-red-600 p-3 rounded-md mt-3">
+            <p>La ruta ya ha sido entregada y no se puede iniciar nuevamente.</p>
+          </div>
+           
         @else
-            <p class="parrafo text-green-500">La ruta ya está en curso.</p>
+          <div class="bg-green-200 border border-green-400 text-green-600 p-3 rounded-md mt-3">
+              <p>La ruta ya está en curso.</p>
+          </div>  
         @endif
     </section>
 

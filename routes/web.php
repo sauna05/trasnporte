@@ -27,7 +27,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/admin/register', [VehicleController::class, 'store'])->name('register_vehicle');
     Route::get('/admin/vehicles', [VehicleController::class, 'index'])->name('admin.vehicles');
     Route::get('/admin/reports',[UserController::class, 'reports'])->name('admin.reports');
-
+   Route::delete('/admin/vehicle/{id}', [vehicleController::class, 'delete_vehicle'])->name('admin.vehicle_delete');
     Route::get('/admin/vehicle/{id}', [vehicleController::class, 'vehicle_show'])->name('admin.vehicle_show');
    
     // Route::get('/admin/vehicles/{id}/edit', [VehicleController::class, 'edit'])->name('admin.vehicles.edit');
@@ -45,23 +45,28 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/admin/logout', action: [UserController::class, 'logout'])->name('admin.logout');
 
     //gestion de rutas 
+    Route::get('/admin/routes-customer/{id}', [RouteController::class,'pedido'])->name('admin.customer_ruta');
+
     Route::get('/admin/routes-show/{id}', [RouteController::class,'route_show'])->name('admin.routes-show');
     Route::get('/admin/routes',[RouteController::class,'routes_index'])->name('admin.routesForm');
     Route::get('/admin/routesDocument',[RouteController::class,'buscadorDocument'])->name('admin.showDocument');
     //iniciar ruta
     Route::post('/admin/routes_post',[driverRouteController::class,'iniciarRuta'])->name('admin.iniciar_ruta');
-
+    
     //ruta para gestionar conductores
     Route::get('/admin/driver', [DriverController::class, 'index'])->name('admin.drivers');
     Route::get('/admin/driverView', [DriverController::class, 'create'])->name('admin.driverForm');
     Route::post('/admin/driverRegister', [DriverController::class, 'registerDriver'])->name('admin.registerDriver');
     Route::get('/admin/drivers/{id}', [DriverController::class, 'show'])->name('admin.driver_show');
     Route::delete('/admin/drivers/{driver}', [DriverController::class, 'eliminardriver'])->name('admin.destroy_driver');
+    Route::get('/admin.driver/{id}', [driverRouteController::class, 'driver_route_asig'])->name('admin.driver_route_asig');
 
     Route::put('/admin/driver/{id}', [DriverController::class, 'update'])->name('admin.driver.update');
+ 
 
     //para gestionar la actualizacion de registro
     Route::get('/admin/driver{id}',[DriverController::class, 'edit'])->name('admin.driver_edit');
+
  
 
 });
@@ -69,7 +74,7 @@ Route::middleware(['role:admin'])->group(function () {
 // // Rutas para conductores
 Route::middleware(['role:conductor'])->group(function () {
     Route::get('/conductor/dashboards', [DriverController::class, 'indexDriver'])->name('conductor.routes-index');
-    //Route::get('/conductor/routes', [driverRouteController::class, 'index'])->name('conductor.driver-route');
+    Route::get('/conductor/routes_driver', [DriverController::class, 'rutas_driver'])->name('conductor.driver_ruta');
     // Otras rutas para conductores
     Route::post('/admin/logoutDriver', action: [UserController::class, 'logout'])->name('conductor.logout');
 });

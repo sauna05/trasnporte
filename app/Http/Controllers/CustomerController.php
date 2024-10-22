@@ -131,4 +131,6 @@ class CustomerController extends Controller
     
         return redirect()->route('admin.cliente_index')->with('message', 'Cliente actualizado con éxito');
     }
+
+    
 }

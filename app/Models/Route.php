@@ -28,4 +28,7 @@ class Route extends Model
     {
         return $this->hasMany(Order::class);
     }
+    public function driverRoutes() {
+        return $this->hasMany(DriverRoute::class);
+    } 
 }

@@ -2,14 +2,13 @@
     <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Reportes</h1>
     
     <h2 class="text-xl font-semibold mb-4 text-center text-gray-700">
-        Dinero generado: <span class="text-green-600">${{ number_format($price_count, 2) }}</span>
-        
+        Dinero generado: <span class="text-green-600">$ {{ number_format($price_count, 2) }}</span>
     </h2>
 
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
 
         <!-- Artículo de Pedidos -->
-        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-105 duration-300">
+        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-110 duration-500 hover:shadow-2xl opacity-0 animate-fadeIn">
             <h2 class="text-2xl font-bold text-blue-600 mb-4">Pedidos</h2>
 
             <div class="flex justify-between mb-2">
@@ -19,11 +18,11 @@
 
             <div class="flex justify-between mb-2">
                 <h4 class="font-bold">Pedidos entregados:</h4>
-                <p class="text-gray-700">20</p>
+                <p class="text-gray-700">{{ $order_en->count() }}</p>
             </div>
 
             <div class="flex justify-between mb-2">
-                <h4 class="font-bold">Pedidos en curso:</h4>
+                <h4 class="font-bold">Pedidos en progreso:</h4>
                 <p class="text-gray-700">{{ $order_pro->count() }}</p>
             </div>
 
@@ -34,7 +33,7 @@
         </article>
 
         <!-- Artículo de Vehículos -->
-        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-105 duration-300">
+        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-110 duration-500 hover:shadow-2xl opacity-0 animate-fadeIn">
             <h2 class="text-2xl font-bold text-blue-600 mb-4">Vehículos</h2>
 
             <div class="flex justify-between mb-2">
@@ -59,7 +58,7 @@
         </article>
 
         <!-- Artículo de Conductores -->
-        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-105 duration-300">
+        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-110 duration-500 hover:shadow-2xl opacity-0 animate-fadeIn">
             <h2 class="text-2xl font-bold text-blue-600 mb-4">Conductores</h2>
 
             <div class="flex justify-between mb-2">
@@ -79,7 +78,7 @@
         </article>
 
         <!-- Artículo de Clientes -->
-        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-105 duration=300">
+        <article class="bg-white shadow-lg rounded-lg p-5 transition-transform transform hover:scale-110 duration-500 hover:shadow-2xl opacity-0 animate-fadeIn">
             <h2 class="text-2xl font-bold text-blue-600 mb-4">Clientes</h2>
 
             <div class="flex justify-between mb-2">
@@ -89,4 +88,23 @@
         </article>
 
     </section>
+
+    <!-- Agregar estilos para la animación -->
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.5s forwards;
+        }
+    </style>
+
 </x-layout-admin>

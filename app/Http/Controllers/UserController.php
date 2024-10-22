@@ -47,10 +47,11 @@ class UserController extends Controller
         //filtrar pedidos pendientes
         $order_pend = Route::where('status', 'pendiente')->get();
         $price_count = Route::sum('price');
+        $order_en = Route::where('status', 'entregada')->get();
         return view('admin.reports-show',
         compact('vehicles','driver',
         'vehicles_to','drivers','vehicles','customer',
-        'drivers_ocu','vehicles_ocu','orders','order_pro','order_pend','price_count'));
+        'drivers_ocu','vehicles_ocu','orders','order_pro','order_pend','price_count','order_en'));
     }
     
 
@@ -76,7 +77,7 @@ class UserController extends Controller
     
             // Redirigir según el rol del usuario
             if ($user->roles()->where('name', 'admin')->exists()) {
-                return redirect()->route('admin.vehicles');
+                return redirect()->route('admin.reports');
             } elseif ($user->roles()->where('name', 'cliente')->exists()) {
                 return redirect()->route('cliente.dashboard');
             } elseif ($user->roles()->where('name', 'conductor')->exists()) {

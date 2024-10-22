@@ -13,16 +13,16 @@ class DriverRoute extends Model
 
     public function vehicle()
     {
-        return $this->belongsTo(Vehicle::class,'driver_routes');
+        return $this->belongsTo(Vehicle::class,);
     }
 
     public function driver()
     {
-        return $this->belongsTo(Driver::class,'driver_routes');
+        return $this->belongsTo(Driver::class);
     }
 
     public function route()
     {
-        return $this->belongsTo(Route::class,'driver_routes');
+        return $this->belongsTo(Route::class);
     }
 }

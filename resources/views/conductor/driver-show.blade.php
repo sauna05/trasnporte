@@ -5,10 +5,10 @@ title="Conductor">
    {{-- cada article es un registro --}}
    <section class="flex space-x-20 ">
     @if($driver->imagen)
-
-       <img src="{{asset('/storage'. $driver->imagen)}}" class="w-96" alt="{{$driver->user->name}}">
-    @else
-        <img src="{{asset('images\customers\Donna-sorridente-830x625.webp')}}" class="w-96" alt="">
+        <img src="{{ asset('storage/' . $driver->imagen) }}" class="w-96 h-96 object-cover rounded-lg shadow-lg" alt="Conductor">     
+    @else        
+        <img src="{{ asset('images/customers/Donna-sorridente-830x625.webp') }}" class="w-96 h-96 object-cover rounded-lg shadow-lg" alt="Conductor">
+    @endif
 
         <article class="space-y-5 ">
 
@@ -73,7 +73,6 @@ title="Conductor">
             </div>
 
         </div>
-    @endif
         
             
 </section>

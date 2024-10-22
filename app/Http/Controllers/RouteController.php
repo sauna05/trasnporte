@@ -24,6 +24,14 @@ class RouteController extends Controller
     
         return view('cliente.routes-show', compact('customer'));
     }
+    public function pedido($id) {
+        // Buscar el cliente asociado por su ID
+        $customer = Customer::with(['orders.route', 'user:id,name,document'])
+            ->where('id', $id) // Cambiar user_id a id para buscar por Customer ID
+            ->firstOrFail(); // Utilizar firstOrFail para manejar el caso donde no se encuentra el cliente
+    
+        return view('admin.order-customer', compact('customer'));
+    }
 
     // public function route_show($id)
     // {

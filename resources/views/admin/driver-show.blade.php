@@ -1,9 +1,9 @@
 <x-layout-admin title="Conductor">
     <section class="flex space-x-20 p-6 bg-gray-50 rounded-lg shadow-md">
         @if($driver->imagen)
-            <img src="{{ asset('storage/' . $driver->imagen) }}" class="w-96 rounded-lg shadow-lg" alt="Conductor">     
+            <img src="{{ asset('storage/' . $driver->imagen) }}" class="w-96 h-96 object-cover rounded-lg shadow-lg" alt="Conductor">     
         @else        
-            <img src="{{ asset('images/customers/Donna-sorridente-830x625.webp') }}" class="w-96 rounded-lg shadow-lg" alt="Conductor">
+            <img src="{{ asset('images/customers/Donna-sorridente-830x625.webp') }}" class="w-96 h-96 object-cover rounded-lg shadow-lg" alt="Conductor">
         @endif
         <article class="space-y-5">
             <article class="space-y-5 self-center items-center">
@@ -65,7 +65,7 @@
     <section class="flex justify-between px-28 py-5 items-center space-x-28 bg-white rounded-lg shadow-md mt-6">
         <div class="flex flex-col space-y-1 justify-center items-center ">
             <p>Ver ruta Asignada</p>
-            <a href="#" class="btn flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration-200 p-2">
+            <a href="{{route('admin.driver_route_asig', $driver->id)}}" class="btn flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition duration=200 p=2">
                 <img src="{{ asset('images/icons/route.svg') }}" alt="">
             </a> 
         </div>
@@ -76,7 +76,7 @@
                 @csrf
                 @method("DELETE")
                 <p>Eliminar Conductor</p>
-                <button type="submit" class="btn flex justify-center items-center bg-red-500 hover:bg-red-600 text-white rounded-md transition duration=200 p-2">
+                <button type="submit" class="btn flex justify-center items-center bg-red-500 hover:bg-red-600 text-white rounded-md transition duration=200 p=2">
                     <img src="{{ asset('images/icons/delete.svg') }}" alt="">
                 </button>
             </form>

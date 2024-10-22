@@ -25,8 +25,8 @@
         </div>
 
         <nav class="flex text-center h-11 bg-azul-principal-0 justify-between items-center">
-            <a href="" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mi Perfil</a>
-                <a href="#" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mis rutas</a>
+            <a href="{{route('conductor.routes-index')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mi Perfil</a>
+                <a href="{{route('conductor.driver_ruta')}}" class="text-fondo-0 parrafo font-medium w-full h-full flex items-center justify-center hover:bg-[#2B71B7] transition-all">Mis rutas</a>
 
         </nav>
     </header>

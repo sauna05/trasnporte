@@ -26,4 +26,8 @@ class Driver extends Model
     {
         return $this->belongsTo(Licence::class, 'license_id'); // Cambia belongsToMany a belongsTo
     }
+    public function driverRoutes()
+    {
+        return $this->hasMany(DriverRoute::class);
+    }
 }

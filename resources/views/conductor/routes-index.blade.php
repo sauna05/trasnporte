@@ -1,71 +1,39 @@
 <x-layout-driver
-title="Conductor">
-    <form action="{{ route('admin.showDocument') }}" method="GET">
-        <div class="flex space-x-10 items-center relative">
-            <div class="relative">       
-                <input type="text" placeholder="Buscar..." name="document" class="w-[30rem] py-2 pl-10 pr-3 border-2 border-black rounded-md focus:outline-none parrafo">
-                <img src="{{ asset('images/icons/buscar.svg') }}" alt="" class="absolute left-2 top-1/2 transform -translate-y-1/2 h-6 w-6 text-black">
-            </div>
 
-            <button type="submit" class="btn">Buscar</button>
+title="Rutas Asignadas al Conductor">
 
-            <div class="flex space-x-10 items-center">
-                <div class="space-x-1">
-                    <input type="checkbox" name="pendientes" id="pendientes" class="scale-150 accent-azul-principal-0 transition-all">
-                    <label for="pendientes">Pendientes</label>
-                </div>
+    <h1 class="text-3xl font-bold mb-5 text-gray-800">Rutas Asignadas a {{ $driver->user->name }}</h1>
 
-                <div class="space-x-1">
-                    <input type="checkbox" name="progreso" id="progreso" class="scale-150 accent-azul-principal-0 transition-all">
-                    <label for="progreso">En progreso</label>
-                </div>
-
-                <div class="space-x-1">
-                    <input type="checkbox" name="entregados" id="entregados" class="scale-150 accent-azul-principal-0 transition-all">
-                    <label for="entregados">Entregados</label>
-                </div>
-            </div>
+    @if(isset($message))
+        <div class="bg-yellow-200 border border-yellow-400 text-yellow-600 p-4 rounded-md mt-3">
+            <p class="font-semibold">{{ $message }}</p>
         </div>
-    </form>
+    @endif
 
-    {{-- Aquí inicia el index --}}
-    <section class="space-y-8 my-5">
-        @if($customers->isEmpty())
-            <div class="text-center text-lg font-semibold text-gray-700">
-                Aun no tines rutas asignadas.
-            </div>
-        @else
-            @foreach($customers as $customer)
-                @if($customer->user) 
-                    <a class="w-2/3 space-y-3 border-b-2 border-gray-500 hover:bg-gray-300/50 rounded-md p-2 block" href="#">
-                        <div class="flex">
-                            <h4 class="w-24 text-right pr-4 font-bold">Documento:</h4>
-                            <p class="parrafo">{{ $customer->user->document }}</p>
+    @if($driver->driverRoutes->isEmpty())
+        <div class="bg-red-200 border border-red-400 text-red-600 p-4 rounded-md mt-3">
+            <p class="font-semibold">No hay rutas asignadas para este conductor.</p>
+        </div>
+    @else
+        <ul class="space-y-3">
+            @foreach($driver->driverRoutes as $driverRoute)
+                <li class="border border-gray-300 p-4 rounded-md shadow-md hover:shadow-lg transition-shadow duration-200">
+                    <strong class="text-lg">Origen:</strong> {{ $driverRoute->route->origin }}<br>
+                    <strong class="text-lg">Destino:</strong> {{ $driverRoute->route->destination }}<br>
+                    <strong class="text-lg">Distancia:</strong> {{ $driverRoute->route->distance }} km<br>
+
+                    @if($driverRoute->route->status === 'entregada')
+                        <div class="bg-green-200 border border-green-400 text-green-600 p-2 rounded-md mt-2">
+                            <p class="font-semibold">La ruta ya está entregada.</p>
                         </div>
-                       
-                        <div class="flex">
-                            <h4 class="w-24 text-right pr-4 font-bold">Cliente:</h4>
-                            <p class="parrafo">{{ $customer->user->name }}</p>
+                    @elseif($driverRoute->route->status === 'en curso')
+                        <div class="bg-blue-200 border border-blue-400 text-blue-600 p-2 rounded-md mt-2">
+                            <p class="font-semibold">La ruta está en curso.</p>
                         </div>
-
-                        @foreach($customer->orders as $order)
-                            @if($order->route) 
-                                <div class="flex">
-                                    <h4 class="w-24 text-right pr-4 font-bold">Estado:</h4>
-                                    <p class="parrafo">{{ $order->route->status }}</p>
-                                </div>
-
-                                <div class="flex">
-                                    <h4 class="w-24 text-right pr-4 font-bold">Carga:</h4>
-                                    <p class="parrafo">{{ $order->charge }}</p>
-                                </div>
-                            @endif
-                        @endforeach
-                    </a>
-                @endif
+                    @endif
+                </li>
             @endforeach
-        @endif
-    </section>
-
+        </ul>
+    @endif
 
 </x-layout-driver>
